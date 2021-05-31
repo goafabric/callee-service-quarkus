@@ -92,6 +92,12 @@
                 <quarkus.container-image.push>true</quarkus.container-image.push>
                 <quarkus.container-image.registry>${docker.registry}</quarkus.container-image.registry>
             </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-container-image-jib</artifactId>
+                </dependency>
+            </dependencies>
             <build>
                 <plugins>
                     <plugin>
