@@ -1,4 +1,4 @@
-package org.acme.getting.started;
+package org.goafabric.calleeservice.service;
 
 import io.quarkus.test.junit.NativeImageTest;
 
