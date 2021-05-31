@@ -33,6 +33,11 @@
             <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
+
         <!-- 3rd party -->
         <dependency>
             <groupId>org.projectlombok</groupId>
