@@ -24,6 +24,7 @@
 
         <!-- Docker -->
         <docker.registry>docker.io/goafabric</docker.registry>
+        <docker.image.complete.name>${docker.registry}/${project.artifactId}:${project.version}</docker.image.complete.name>
 
         <!-- Quarkus -->
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
@@ -101,7 +102,7 @@
                 <quarkus.native.container-build>true</quarkus.native.container-build>
                 <quarkus.container-image.build>true</quarkus.container-image.build>
                 <quarkus.container-image.push>true</quarkus.container-image.push>
-                <quarkus.container-image.image>${docker.registry}/${project.artifactId}:${project.version}</quarkus.container-image.image>
+                <quarkus.container-image.image>${docker.image.complete.name}</quarkus.container-image.image>
             </properties>
             <dependencies>
                 <dependency>
@@ -133,12 +134,27 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <!--
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>3.0.0</version>
                         <executions>
+                            <execution>
+                                <id>integrity</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>docker</executable>
+                                    <arguments>
+                                        <argument>run</argument>
+                                        <argument>${docker.image.complete.name}</argument>
+                                        <argument>-check-integrity</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <!--
                             <execution>
                                 <id>docker push</id>
                                 <phase>install</phase>
@@ -153,9 +169,9 @@
                                     </arguments>
                                 </configuration>
                             </execution>
+                            -->
                         </executions>
                     </plugin>
-                    -->
                 </plugins>
             </build>
         </profile>
