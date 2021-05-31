@@ -23,6 +23,14 @@ public class CalleeService {
     }
 
     @GET
+    @Path("/setSleepTime")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String setSleepTime(@QueryParam("sleepTime") Long sleepTime) {
+        return calleeLogic.setSleepTime(sleepTime);
+    }
+
+
+    @GET
     @Path("/sayMyName")
     @Produces(MediaType.APPLICATION_JSON)
     public String sayMyName(@QueryParam("name") String name) {
