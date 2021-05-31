@@ -2,6 +2,7 @@ package org.goafabric.calleeservice.service;
 
 import org.goafabric.calleeservice.logic.CalleeLogic;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -16,14 +17,16 @@ public class CalleeService {
     private CalleeLogic calleeLogic;
 
     @GET
-    @Path("/isAlive")
+    @Path("isAlive")
+    @RolesAllowed("admin")
+
     //Produces APPLICATION_JSON not allowed here
     public Boolean isAlive() {
         return calleeLogic.isAlive();
     }
 
     @GET
-    @Path("/setSleepTime")
+    @Path("setSleepTime")
     @Produces(MediaType.APPLICATION_JSON)
     public String setSleepTime(@QueryParam("sleepTime") Long sleepTime) {
         return calleeLogic.setSleepTime(sleepTime);
@@ -31,7 +34,7 @@ public class CalleeService {
 
 
     @GET
-    @Path("/sayMyName")
+    @Path("sayMyName")
     @Produces(MediaType.APPLICATION_JSON)
     public String sayMyName(@QueryParam("name") String name) {
         return calleeLogic.sayMyName(name);
