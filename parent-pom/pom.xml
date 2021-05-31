@@ -71,10 +71,10 @@
     </build>
     <profiles>
         <profile>
-            <id>native</id>
+            <id>docker-native-image</id>
             <activation>
                 <property>
-                    <name>native</name>
+                    <name>docker-native-image</name>
                 </property>
             </activation>
             <build>
@@ -105,6 +105,8 @@
             </build>
             <properties>
                 <quarkus.package.type>native</quarkus.package.type>
+                <quarkus.native.container-build>true</quarkus.native.container-build>
+                <quarkus.container-image.build>true</quarkus.container-image.build>
             </properties>
         </profile>
     </profiles>
