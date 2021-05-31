@@ -71,10 +71,10 @@
     </build>
     <profiles>
         <profile>
-            <id>docker-native-image</id>
+            <id>docker-image-native</id>
             <activation>
                 <property>
-                    <name>docker-native-image</name>
+                    <name>docker-image-native</name>
                 </property>
             </activation>
             <build>
