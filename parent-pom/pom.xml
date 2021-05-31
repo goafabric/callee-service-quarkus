@@ -90,7 +90,7 @@
                 <quarkus.native.container-build>true</quarkus.native.container-build>
                 <quarkus.container-image.build>true</quarkus.container-image.build>
                 <quarkus.container-image.push>true</quarkus.container-image.push>
-                <quarkus.container-image.registry>${docker.registry}</quarkus.container-image.registry>
+                <quarkus.container-image.image>${docker.registry}/${project.artifactId}:${project.version}</quarkus.container-image.image>
             </properties>
             <dependencies>
                 <dependency>
