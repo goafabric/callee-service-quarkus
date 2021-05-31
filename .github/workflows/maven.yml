@@ -21,4 +21,4 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
 #      run: mvn -B clean verify --file pom.xml
-      run: mvn -B clean install -P docker-image-native -Dquarkus.container-image.build=true --file pom.xml
+      run: mvn -B clean install -P docker-image-native -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.registry="docker.io/goafabric" --file pom.xml
