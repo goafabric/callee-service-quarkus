@@ -89,6 +89,8 @@
                 <quarkus.package.type>native</quarkus.package.type>
                 <quarkus.native.container-build>true</quarkus.native.container-build>
                 <quarkus.container-image.build>true</quarkus.container-image.build>
+                <quarkus.container-image.push>true</quarkus.container-image.push>
+                <quarkus.container-image.registry>${docker.registry}</quarkus.container-image.registry>
             </properties>
             <build>
                 <plugins>
@@ -114,8 +116,9 @@
                             </execution>
                         </executions>
                     </plugin>
+
+                    <!--
                     <plugin>
-                        <!-- workaround for missing publish functionality, see: https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/htmlsingle/#build-image-example-publish -->
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>3.0.0</version>
@@ -136,6 +139,7 @@
                             </execution>
                         </executions>
                     </plugin>
+                    -->
                 </plugins>
             </build>
         </profile>
