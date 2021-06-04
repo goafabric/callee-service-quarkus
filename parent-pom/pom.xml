@@ -101,8 +101,10 @@
                 <quarkus.package.type>native</quarkus.package.type>
                 <quarkus.native.container-build>true</quarkus.native.container-build>
                 <quarkus.container-image.build>true</quarkus.container-image.build>
-                <quarkus.container-image.push>true</quarkus.container-image.push>
+                <quarkus.container-image.push>false</quarkus.container-image.push>
                 <quarkus.container-image.image>${docker.image.complete.name}</quarkus.container-image.image>
+
+                <quarkus.native.builder-image>goafabric/quarkus-build-aarch64:java11-21.0.0.2</quarkus.native.builder-image>
             </properties>
             <dependencies>
                 <dependency>
