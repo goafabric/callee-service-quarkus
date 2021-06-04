@@ -96,8 +96,8 @@
                 <quarkus.package.type>native</quarkus.package.type>
                 <quarkus.native.container-build>true</quarkus.native.container-build>
 
+                <quarkus.container-image.push>false</quarkus.container-image.push>
                 <quarkus.container-image.build>true</quarkus.container-image.build>
-                <quarkus.container-image.push>true</quarkus.container-image.push>
                 <quarkus.container-image.image>${docker.registry}/${project.artifactId}:${project.version}</quarkus.container-image.image>
             </properties>
             <dependencies>
@@ -125,6 +125,27 @@
                                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                                         <maven.home>${maven.home}</maven.home>
                                     </systemPropertyVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>docker push</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>docker</executable>
+                                    <arguments>
+                                        <argument>push</argument>
+                                        <argument>${quarkus.container-image.image}</argument>
+                                    </arguments>
                                 </configuration>
                             </execution>
                         </executions>
