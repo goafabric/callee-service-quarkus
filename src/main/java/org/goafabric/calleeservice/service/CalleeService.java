@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/callees")
 public class CalleeService {
     @Inject
-    private CalleeLogic calleeLogic;
+    CalleeLogic calleeLogic;
 
     @GET
     @Path("/isAlive")
