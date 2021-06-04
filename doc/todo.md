@@ -1,4 +1,3 @@
-- Profile for Image Push
 - JPA, Flyway Application, Cache
 - Security, ExceptionHandler, Prometheus, Bean Validation
 - Docker Compose File
