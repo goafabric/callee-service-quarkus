@@ -1,6 +1,5 @@
 - JPA, Flyway Application, Cache
 - Security, ExceptionHandler, Prometheus, Bean Validation
 - Docker Compose File
-- Logging Config
 
 - Container Integration Tests ( https://quarkus.io/guides/getting-started-testing)
