@@ -1,4 +1,6 @@
 - Container Integration Tests ( https://quarkus.io/guides/getting-started-testing)
-- Console Only Application + Profile for Image Push
+- Profile for Image Push
 - JPA, Flyway Application, Cache
 - Security, ExceptionHandler, Prometheus, Bean Validation
+- Docker Compose File
+- Logging Config
