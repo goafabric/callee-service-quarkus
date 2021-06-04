@@ -154,22 +154,6 @@
                                     </arguments>
                                 </configuration>
                             </execution>
-                            <!--
-                            <execution>
-                                <id>docker push</id>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>docker</executable>
-                                    <arguments>
-                                        <argument>push</argument>
-                                        <argument>${docker.registry}/${project.artifactId}:${project.version}</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                            -->
                         </executions>
                     </plugin>
                 </plugins>
