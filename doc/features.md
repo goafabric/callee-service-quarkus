@@ -1,5 +1,6 @@
 #Working
-- Tomcat, Actuator, Prometheus, Swagger, Lombok, Mapstruct
+- Tomcat, Actuator, Prometheus, Lombok, Mapstruct
+- Swagger  
 - JPA, Flyway, Annotations (e.g. @Transactional)
 
 #Not Tested
