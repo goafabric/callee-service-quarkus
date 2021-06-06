@@ -3,9 +3,9 @@
 - Swagger  
 - JPA, Flyway, Annotations (e.g. @Transactional)
 - Bean Validation
+- Cache
 
 #Not Tested
-- Cache
 - Exceptionhandler
 - Security
 - Resilience, Tracing, 
