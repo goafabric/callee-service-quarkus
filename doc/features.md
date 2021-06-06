@@ -2,10 +2,10 @@
 - Tomcat, Actuator, Prometheus, Lombok, Mapstruct
 - Swagger  
 - JPA, Flyway, Annotations (e.g. @Transactional)
+- Bean Validation
 
 #Not Tested
 - Cache
-- Bean Validation
 - Exceptionhandler
 - Security
 - Resilience, Tracing, 
