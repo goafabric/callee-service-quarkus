@@ -16,14 +16,14 @@ public class CalleeService {
     CalleeLogic calleeLogic;
 
     @GET
-    @Path("/isAlive")
+    @Path("isAlive")
     //Produces APPLICATION_JSON not allowed here
     public Boolean isAlive() {
         return calleeLogic.isAlive();
     }
 
     @GET
-    @Path("/setSleepTime")
+    @Path("setSleepTime")
     @Produces(MediaType.APPLICATION_JSON)
     public String setSleepTime(@QueryParam("sleepTime") Long sleepTime) {
         return calleeLogic.setSleepTime(sleepTime);
@@ -31,14 +31,14 @@ public class CalleeService {
 
 
     @GET
-    @Path("/sayMyName")
+    @Path("sayMyName")
     @Produces(MediaType.APPLICATION_JSON)
     public String sayMyName(@QueryParam("name") String name) {
         return calleeLogic.sayMyName(name);
     }
 
     @GET
-    @Path("/sayMyOtherName/{name}")
+    @Path("sayMyOtherName/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public String sayMyOtherName(@PathParam("name") String name) {
         return calleeLogic.sayMyOtherName(name);

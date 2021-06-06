@@ -4,7 +4,7 @@
 
 #Not Tested
 - Cache
-- Prometheus, Bean Validation
+- Bean Validation
 - Exceptionhandler
 - Security
 

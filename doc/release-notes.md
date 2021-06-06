@@ -1,5 +1,6 @@
 #1.0.1
-- apple silicon compatible arm64 native build added !              
+- Apple silicon compatible arm64 native build added !         
+- Prometheus metrics added
 
 #1.0.0
 - initial version

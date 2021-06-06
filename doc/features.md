@@ -1,5 +1,5 @@
 #Working
-- Tomcat, Actuator, Swagger, Lombok, Mapstruct
+- Tomcat, Actuator, Prometheus, Swagger, Lombok, Mapstruct
 - JPA, Flyway, Annotations (e.g. @Transactional)
 
 #build times apple silicon:
