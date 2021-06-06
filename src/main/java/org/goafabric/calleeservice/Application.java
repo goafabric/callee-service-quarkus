@@ -10,7 +10,6 @@ public class Application {
 
     public static void main(String... args) {
         Quarkus.run(args);
-        log.info("Hello from Quarkus");
     }
 
 }
