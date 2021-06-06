@@ -7,4 +7,5 @@
 - Bean Validation
 - Exceptionhandler
 - Security
+- Resilience, Tracing, Jasypt
 
