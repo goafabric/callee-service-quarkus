@@ -11,4 +11,4 @@
 #build times github:
 - console: 3m
 - tomcat: 4m
-- jpa: 5m
+- jpa: 6m
