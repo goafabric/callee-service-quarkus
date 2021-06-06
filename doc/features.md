@@ -4,12 +4,12 @@
 - JPA, Flyway, Annotations (e.g. @Transactional)
 - Bean Validation
 - Cache
+- Exceptionhandler
 
 #Not Tested
-- Exceptionhandler
 - Security
 - Resilience, Tracing, 
-- Aspects, Jasypt
+- Aspects, Jasypt, Multi Tenancy
 
 #build times apple silicon:
 - console: 1m
