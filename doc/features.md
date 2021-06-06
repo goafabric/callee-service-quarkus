@@ -9,7 +9,7 @@
 #Not Tested
 - Security
 - Resilience, Tracing, 
-- Aspects, Jasypt, Multi Tenancy
+- Jasypt, Multi Tenancy
 
 #build times apple silicon:
 - console: 1m
