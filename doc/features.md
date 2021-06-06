@@ -8,7 +8,8 @@
 - Bean Validation
 - Exceptionhandler
 - Security
-- Resilience, Tracing, Jasypt
+- Resilience, Tracing, 
+- Aspects, Jasypt
 
 #build times apple silicon:
 - console: 1m
