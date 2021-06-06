@@ -2,6 +2,13 @@
 - Tomcat, Actuator, Prometheus, Swagger, Lombok, Mapstruct
 - JPA, Flyway, Annotations (e.g. @Transactional)
 
+#Not Tested
+- Cache
+- Bean Validation
+- Exceptionhandler
+- Security
+- Resilience, Tracing, Jasypt
+
 #build times apple silicon:
 - console: 1m
 - tomcat: 1.5m
