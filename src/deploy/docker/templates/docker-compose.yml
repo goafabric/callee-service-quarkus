@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  callee-service:
+    container_name: ${_Values_root_name}-application
+    image:  ${_Values_image_repository}${_Values_server_arch}:${_Values_image_tag}
+    restart: 'no'
+    ports:
+      - "${_Values_service_port}:${_Values_service_port}"
+    command: ["-Xmx${_Values_resources_requests_memory}"]
+
+#    we cannot active the healthcheck because base native images does not have curl
+#    healthcheck:
+#      test: "curl -f http://localhost:${_Values_service_port}/actuator/health || exit 1"
+#      interval: 10s
+#      timeout: 10s
+#      retries: 5
+    volumes:
+      - tmp:/tmp
+      - applogs:/usr/share/logs
+    networks:
+      - ${_Values_root_name}-net
+    environment:
+      #application
+      - TZ=Europe/Berlin
+      - quarkus.http.port=${_Values_service_port}
+      - quarkus.http.io-threads=20
+      #logging
+      - quarkus.log.level=INFO
+      - quarkus.log.category."org.goafabric".level=INFO
+      - quarkus.log.category."org.flywaydb.core".level=INFO
+      - quarkus.log.category."org.hibernate".level=INFO
+
+volumes:
+    tmp:
+    applogs:
+
+networks:
+  callee-service-net:
+    driver: bridge
