@@ -1,7 +1,6 @@
 #Working
 - Tomcat, Actuator, Prometheus, Lombok, Mapstruct, ExceptionHandler
 - Swagger
-- Aspects / Interceptor
 
 #Not Tested
 - Security
