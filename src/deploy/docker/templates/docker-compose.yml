@@ -11,7 +11,7 @@ services:
 
     healthcheck:
       test: "curl -f http://localhost:${_Values_service_port}/actuator/health || exit 1"
-      interval: 10s
+      interval: 5s
       timeout: 10s
       retries: 5
     volumes:
@@ -24,11 +24,16 @@ services:
       - TZ=Europe/Berlin
       - quarkus.http.port=${_Values_service_port}
       - quarkus.http.io-threads=20
-      #logging
+      #log levels
       - quarkus.log.level=INFO
       - quarkus.log.category."org.goafabric".level=INFO
       - quarkus.log.category."org.flywaydb.core".level=INFO
       - quarkus.log.category."org.hibernate".level=INFO
+      #log file settings
+      - quarkus.log.file.enable=true
+      - quarkus.log.file.rotation.max-file-size=10M
+      - quarkus.log.file.path=/usr/share/logs/application.log
+      - quarkus.log.file.format=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n%throwable
 
 volumes:
     tmp:
