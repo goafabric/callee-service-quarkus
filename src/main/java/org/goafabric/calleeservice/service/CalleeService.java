@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 @RolesAllowed("admin")
 public class CalleeService {
     @Inject
-    private CalleeLogic calleeLogic;
+    CalleeLogic calleeLogic;
 
     @GET
     @Path("isAlive")
@@ -40,7 +40,7 @@ public class CalleeService {
     }
 
     @GET
-    @Path("/sayMyOtherName/{name}")
+    @Path("sayMyOtherName/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public String sayMyOtherName(@PathParam("name") String name) {
         return calleeLogic.sayMyOtherName(name);

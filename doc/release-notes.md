@@ -1,4 +1,11 @@
-#1.0.1
+#1.0.6
+
+#1.0.5
+- sync with quarkus variant
+  
+- Apple silicon compatible arm64 native build added !         
+- Prometheus metrics added
+- Exceptionhandler added
 
 #1.0.0
 - initial version

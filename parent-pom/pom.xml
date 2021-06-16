@@ -19,20 +19,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!-- 3rd party -->
-        <lombok.version>1.18.20</lombok.version>
-
         <!-- Docker -->
         <docker.registry>docker.io/goafabric</docker.registry>
-        <docker.image.complete.name>${docker.registry}/${project.artifactId}:${project.version}</docker.image.complete.name>
 
         <!-- Quarkus -->
-        <compiler-plugin.version>3.8.1</compiler-plugin.version>
-        <maven.compiler.parameters>true</maven.compiler.parameters>
-        <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
-
         <quarkus-plugin.version>1.13.6.Final</quarkus-plugin.version>
         <quarkus.platform.version>1.13.6.Final</quarkus.platform.version>
+
+        <!-- 3rd party -->
+        <lombok.version>1.18.20</lombok.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <lombok.mapstruct.binding.version>0.2.0</lombok.mapstruct.binding.version>
+
+        <!-- Build -->
+        <compiler-plugin.version>3.8.1</compiler-plugin.version>
+        <maven.compiler.parameters>true</maven.compiler.parameters>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -51,9 +53,49 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+    
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                        <!-- mapstruct now needs mapstruct-binding configured like this, also order seems to be important first mapstruct than lombok -->
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok-mapstruct-binding</artifactId>
+                                <version>${lombok.mapstruct.binding.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>io.quarkus</groupId>
@@ -79,7 +121,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire-plugin.version}</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <systemPropertyVariables>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
@@ -92,17 +134,15 @@
     <profiles>
         <profile>
             <id>docker-image-native</id>
-            <activation>
-                <property>
-                    <name>docker-image-native</name>
-                </property>
-            </activation>
             <properties>
                 <quarkus.package.type>native</quarkus.package.type>
                 <quarkus.native.container-build>true</quarkus.native.container-build>
+
+                <quarkus.container-image.push>false</quarkus.container-image.push>
                 <quarkus.container-image.build>true</quarkus.container-image.build>
-                <quarkus.container-image.push>true</quarkus.container-image.push>
-                <quarkus.container-image.image>${docker.image.complete.name}</quarkus.container-image.image>
+                <quarkus.container-image.image>${docker.registry}/${project.artifactId}:${project.version}</quarkus.container-image.image>
+
+                <quarkus.native.native-image-xmx>4096m</quarkus.native.native-image-xmx>
             </properties>
             <dependencies>
                 <dependency>
@@ -114,7 +154,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${surefire-plugin.version}</version>
+                        <version>${maven-surefire-plugin.version}</version>
                         <executions>
                             <execution>
                                 <goals>
@@ -126,8 +166,7 @@
                                         <native.image.path>
                                             ${project.build.directory}/${project.build.finalName}-runner
                                         </native.image.path>
-                                        <java.util.logging.manager>org.jboss.logmanager.LogManager
-                                        </java.util.logging.manager>
+                                        <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                                         <maven.home>${maven.home}</maven.home>
                                     </systemPropertyVariables>
                                 </configuration>
@@ -140,22 +179,6 @@
                         <version>3.0.0</version>
                         <executions>
                             <execution>
-                                <id>integrity</id>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>docker</executable>
-                                    <arguments>
-                                        <argument>run</argument>
-                                        <argument>${docker.image.complete.name}</argument>
-                                        <argument>-check-integrity</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                            <!--
-                            <execution>
                                 <id>docker push</id>
                                 <phase>install</phase>
                                 <goals>
@@ -165,15 +188,23 @@
                                     <executable>docker</executable>
                                     <arguments>
                                         <argument>push</argument>
-                                        <argument>${docker.registry}/${project.artifactId}:${project.version}</argument>
+                                        <argument>${quarkus.container-image.image}</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
-                            -->
                         </executions>
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>docker-image-native-arm64</id>
+            <properties>
+                <quarkus.container-image.push>false</quarkus.container-image.push>
+                <quarkus.container-image.image>${docker.registry}/${project.artifactId}-arm64v8:${project.version}</quarkus.container-image.image>
+                <quarkus.native.builder-image>goafabric/quarkus-build-aarch64:java11-21.0.0.2</quarkus.native.builder-image>
+                <quarkus.jib.platforms>linux/arm64/v8</quarkus.jib.platforms>
+            </properties>
         </profile>
     </profiles>
 </project>
