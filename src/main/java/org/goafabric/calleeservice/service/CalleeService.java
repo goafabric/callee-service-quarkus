@@ -12,14 +12,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("/callees")
+@RolesAllowed("admin")
 public class CalleeService {
     @Inject
     private CalleeLogic calleeLogic;
 
     @GET
     @Path("isAlive")
-    @RolesAllowed("admin")
-
     //Produces APPLICATION_JSON not allowed here
     public Boolean isAlive() {
         return calleeLogic.isAlive();
