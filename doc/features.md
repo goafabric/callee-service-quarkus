@@ -1,8 +1,9 @@
 #Working
-- Tomcat, Actuator, Prometheus, ExceptionHandler 
+- Web, Health, Prometheus, ExceptionHandler 
 - Lombok, Mapstruct 
 - Swagger
 - Security
+- DurationLogger
 
 #build times apple silicon:
 - console: 1m

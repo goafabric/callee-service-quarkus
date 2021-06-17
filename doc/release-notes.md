@@ -1,4 +1,6 @@
 #1.0.6
+- Security added
+- DurationLogger added
 
 #1.0.5
 - sync with quarkus variant
