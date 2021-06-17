@@ -24,6 +24,8 @@ services:
       - TZ=Europe/Berlin
       - quarkus.http.port=${_Values_service_port}
       - quarkus.http.io-threads=20
+      #security
+      - security.authentication.enabled=true
       #log levels
       - quarkus.log.level=INFO
       - quarkus.log.category."org.goafabric".level=INFO
