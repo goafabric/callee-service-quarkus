@@ -1,8 +1,6 @@
 #Working
 - Tomcat, Actuator, Prometheus, Lombok, Mapstruct, ExceptionHandler
 - Swagger
-
-#Not Tested
 - Security
 
 #build times apple silicon:
