@@ -1,5 +1,6 @@
 #Working
-- Tomcat, Actuator, Prometheus, Lombok, Mapstruct, ExceptionHandler
+- Tomcat, Actuator, Prometheus, ExceptionHandler 
+- Lombok, Mapstruct 
 - Swagger
 - Security
 
