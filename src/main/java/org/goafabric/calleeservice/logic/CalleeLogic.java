@@ -1,11 +1,9 @@
 package org.goafabric.calleeservice.logic;
 
 import lombok.SneakyThrows;
-import org.goafabric.calleeservice.crossfunctional.DurationLog;
 
 import javax.enterprise.context.ApplicationScoped;
 
-@DurationLog
 @ApplicationScoped
 public class CalleeLogic {
     private Long sleepTime = 0l;
