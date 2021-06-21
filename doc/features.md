@@ -1,8 +1,9 @@
 #Working
 - Web, Health, Prometheus, ExceptionHandler 
 - Lombok, Mapstruct 
-- Swagger
 - Security
+
+- Swagger
 
 #build times apple silicon:
 - console: 1m
