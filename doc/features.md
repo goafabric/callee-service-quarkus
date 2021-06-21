@@ -3,7 +3,6 @@
 - Lombok, Mapstruct 
 - Swagger
 - Security
-- DurationLogger
 
 #build times apple silicon:
 - console: 1m
