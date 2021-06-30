@@ -22,6 +22,7 @@ public class CalleeLogic {
     }
 
     public Callee setSleepTime(Long sleepTime) {
+        this.sleepTime = sleepTime; //you should never change instance variables for a productive app
         return Callee.builder()
                 .message("set sleepTime to: " + sleepTime).build();
     }

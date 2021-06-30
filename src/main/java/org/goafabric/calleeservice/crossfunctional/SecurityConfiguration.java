@@ -9,10 +9,10 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 import javax.interceptor.Interceptor;
 
+@Getter
 @Alternative
 @Priority(Interceptor.Priority.LIBRARY_AFTER)
 @ApplicationScoped
-@Getter
 public class SecurityConfiguration extends AuthorizationController {
     @ConfigProperty(name = "security.authentication.enabled", defaultValue = "true")
     boolean isAuthorizationEnabled;
