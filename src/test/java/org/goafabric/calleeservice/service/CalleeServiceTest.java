@@ -27,7 +27,7 @@ public class CalleeServiceTest {
     @Test
     public void setSleepTime() {
         given()
-                .when().get("/callees/setSleepTime?sleepTime=10000")
+                .when().get("/callees/setSleepTime?sleepTime=0")
                 .then()
                 .statusCode(200);
     }
