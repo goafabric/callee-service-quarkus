@@ -1,4 +1,5 @@
 #1.0.7
+- added CalleService.sayMyName instead of isAlive
 
 #1.0.6
 - Security added
