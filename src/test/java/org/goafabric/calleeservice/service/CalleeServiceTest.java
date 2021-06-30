@@ -11,10 +11,9 @@ public class CalleeServiceTest {
     @Test
     public void sayMyName() {
         given()
-          .when().get("/callees/sayMyName?name=Andreas")
+          .when().get("/callees/sayMyName?name=Heisenberg")
           .then()
              .statusCode(200);
-                //.body(is("true"));
     }
 
     @Test
@@ -22,8 +21,15 @@ public class CalleeServiceTest {
         given()
                 .when().get("/callees/sayMyOtherName/Andreas")
                 .then()
+                    .statusCode(200);
+    }
+
+    @Test
+    public void setSleepTime() {
+        given()
+                .when().get("/callees/setSleepTime?sleepTime=10000")
+                .then()
                 .statusCode(200);
-        //.body(is("true"));
     }
 
 }
