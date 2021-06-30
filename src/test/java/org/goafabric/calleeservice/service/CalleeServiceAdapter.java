@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 
 @Path("/callees")
-@RegisterRestClient
+@RegisterRestClient(baseUri = "http://localhost:50900")
 public interface CalleeServiceAdapter {
     @GET
     @Path("sayMyName")
