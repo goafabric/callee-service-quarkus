@@ -1,5 +1,6 @@
 #1.0.7
 - added CalleService.sayMyName instead of isAlive
+- upgrade to Quarkus 2.0
 
 #1.0.6
 - Security added
