@@ -14,18 +14,18 @@ class CalleeService(
     @GET
     @Path("sayMyName")
     fun sayMyName(@QueryParam("name") name : String ) : Callee {
-        return calleeLogic.sayMyName(name);
+        return calleeLogic.sayMyName(name)
     }
 
     @GET
     @Path("sayMyOtherName/{name}")
     fun sayMyOtherName(@PathParam("name") name : String) : Callee {
-        return calleeLogic.sayMyOtherName(name);
+        return calleeLogic.sayMyOtherName(name)
     }
 
     @GET
     @Path("setSleepTime")
     fun setSleepTime(@QueryParam("sleepTime") sleepTime : Long) : Callee {
-        return calleeLogic.setSleepTime(sleepTime);
+        return calleeLogic.setSleepTime(sleepTime)
     }
 }
