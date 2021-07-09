@@ -1,28 +1,26 @@
-package org.goafabric.calleeservice.crossfunctional;
+package org.goafabric.calleeservice.crossfunctional
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import javax.ws.rs.core.Response
+import javax.ws.rs.ext.ExceptionMapper
+import javax.ws.rs.ext.Provider
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
-
-@Slf4j
 @Provider
-public class ExceptionHandler implements ExceptionMapper<Exception> {
+class ExceptionHandler : ExceptionMapper<Exception> {
+    private val log: Logger = LoggerFactory.getLogger(ExceptionHandler::class.java)
 
-    @Override
-    public Response toResponse(Exception e) {
-        final Response.Status status;
-        if (e instanceof IllegalArgumentException) {
-            status = Response.Status.PRECONDITION_FAILED;
-        } else if (e instanceof IllegalStateException) {
-            status = Response.Status.PRECONDITION_FAILED;
+    override fun toResponse(e: Exception): Response {
+        val status: Response.Status
+        status = if (e is IllegalArgumentException) {
+            Response.Status.PRECONDITION_FAILED
+        } else if (e is IllegalStateException) {
+            Response.Status.PRECONDITION_FAILED
         } else {
-            status = Response.Status.BAD_REQUEST;
+            Response.Status.BAD_REQUEST
         }
-        
-        log.error(e.getMessage(), e);
+        log.error(e.message, e)
         return Response.status(status)
-                .entity("an error occured: " + e.getMessage()).build();
+            .entity("an error occured: " + e.message).build()
     }
 }
