@@ -1,7 +1,6 @@
 package org.goafabric.calleeservice.crossfunctional
 
 import io.quarkus.security.spi.runtime.AuthorizationController
-import lombok.Getter
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import javax.annotation.Priority
 import javax.enterprise.context.ApplicationScoped

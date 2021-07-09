@@ -56,11 +56,7 @@
         </dependency>
 
         <!-- code generation -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        
+
         <!-- security -->
         <dependency>
             <groupId>io.quarkus</groupId>
