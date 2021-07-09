@@ -1,28 +1,24 @@
-/*
-package org.goafabric.calleeservice.service;
+package org.goafabric.calleeservice.service
 
-import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
+import javax.ws.rs.GET
+import org.goafabric.calleeservice.service.Callee
+import javax.ws.rs.Path
+import javax.ws.rs.PathParam
+import javax.ws.rs.QueryParam
 
 @Path("/callees")
 @RegisterRestClient
-public interface CalleeServiceAdapter {
+interface CalleeServiceAdapter {
     @GET
     @Path("sayMyName")
-    Callee sayMyName(@QueryParam("name") String name);
+    fun sayMyName(@QueryParam("name") name: String): Callee
 
     @GET
     @Path("sayMyOtherName/{name}")
-    Callee sayMyOtherName(@PathParam("name") String name);
+    fun sayMyOtherName(@PathParam("name") name: String): Callee
 
     @GET
     @Path("setSleepTime")
-    Callee setSleepTime(@QueryParam("sleepTime") Long sleepTime);
+    fun setSleepTime(@QueryParam("sleepTime") sleepTime: Long): Callee
 }
-
-
- */

@@ -6,8 +6,8 @@ import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 
 @Path("/callees")
-@RolesAllowed("standard_role")
 @Produces(MediaType.APPLICATION_JSON)
+@RolesAllowed("standard_role")
 class CalleeService(
     val calleeLogic: CalleeLogic) {
     
@@ -28,5 +28,4 @@ class CalleeService(
     fun setSleepTime(@QueryParam("sleepTime") sleepTime : Long) : Callee {
         return calleeLogic.setSleepTime(sleepTime);
     }
-
 }
