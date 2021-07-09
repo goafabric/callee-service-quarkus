@@ -8,7 +8,9 @@ import javax.ws.rs.core.MediaType
 @Path("/callees")
 @RolesAllowed("standard_role")
 @Produces(MediaType.APPLICATION_JSON)
-class CalleeService(val calleeLogic: CalleeLogic) {
+class CalleeService(
+    val calleeLogic: CalleeLogic) {
+    
     @GET
     @Path("sayMyName")
     fun sayMyName(@QueryParam("name") name : String ) : Callee {
