@@ -23,7 +23,7 @@ class CalleeLogic {
         return Callee(message = "set sleepTime to: ${sleepTime}")
     }
     
-    fun sleep() {
+    private fun sleep() {
         Thread.sleep(sleepTime.get())
     }
 }
