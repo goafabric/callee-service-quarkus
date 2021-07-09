@@ -1,3 +1,4 @@
+/*
 package org.goafabric.calleeservice.service;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
@@ -22,3 +23,6 @@ public interface CalleeServiceAdapter {
     @Path("setSleepTime")
     Callee setSleepTime(@QueryParam("sleepTime") Long sleepTime);
 }
+
+
+ */

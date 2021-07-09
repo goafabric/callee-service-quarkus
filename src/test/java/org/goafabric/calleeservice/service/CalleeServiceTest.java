@@ -1,3 +1,4 @@
+/*
 package org.goafabric.calleeservice.service;
 
 import io.quarkus.test.junit.QuarkusTest;
@@ -33,3 +34,5 @@ class CalleeServiceTest {
     }
 
 }
+
+ */

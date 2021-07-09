@@ -1,15 +1,14 @@
-package org.goafabric.calleeservice;
+package org.goafabric.calleeservice
 
-import io.quarkus.runtime.Quarkus;
-import io.quarkus.runtime.annotations.QuarkusMain;
-import lombok.extern.slf4j.Slf4j;
+import io.quarkus.runtime.annotations.QuarkusMain
+import kotlin.jvm.JvmStatic
+import io.quarkus.runtime.Quarkus
+import lombok.extern.slf4j.Slf4j
 
 @QuarkusMain
-@Slf4j
-public class Application {
-
-    public static void main(String... args) {
-        Quarkus.run(args);
+object Application {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        Quarkus.run(*args)
     }
-
 }
