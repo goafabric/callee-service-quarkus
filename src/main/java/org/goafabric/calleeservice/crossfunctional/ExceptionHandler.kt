@@ -11,12 +11,16 @@ class ExceptionHandler : ExceptionMapper<Exception> {
     private val log: Logger = LoggerFactory.getLogger(ExceptionHandler::class.java)
 
     override fun toResponse(e: Exception): Response {
-        val status: Response.Status = if (e is IllegalArgumentException) {
-            Response.Status.PRECONDITION_FAILED
-        } else if (e is IllegalStateException) {
-            Response.Status.PRECONDITION_FAILED
-        } else {
-            Response.Status.BAD_REQUEST
+        val status: Response.Status = when (e) {
+            is IllegalArgumentException -> {
+                Response.Status.PRECONDITION_FAILED
+            }
+            is IllegalStateException -> {
+                Response.Status.PRECONDITION_FAILED
+            }
+            else -> {
+                Response.Status.BAD_REQUEST
+            }
         }
 
         log.error(e.message, e)
