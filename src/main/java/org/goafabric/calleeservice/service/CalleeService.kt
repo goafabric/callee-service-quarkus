@@ -1,13 +1,13 @@
 package org.goafabric.calleeservice.service
 
 import org.goafabric.calleeservice.logic.CalleeLogic
-import javax.enterprise.context.ApplicationScoped
-import javax.ws.rs.GET
-import javax.ws.rs.Path
-import javax.ws.rs.PathParam
-import javax.ws.rs.QueryParam
+import javax.annotation.security.RolesAllowed
+import javax.ws.rs.*
+import javax.ws.rs.core.MediaType
 
-@ApplicationScoped
+@Path("/callees")
+@RolesAllowed("standard_role")
+@Produces(MediaType.APPLICATION_JSON)
 class CalleeService(val calleeLogic: CalleeLogic) {
     @GET
     @Path("sayMyName")
