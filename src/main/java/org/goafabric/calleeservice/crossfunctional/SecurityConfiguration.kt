@@ -12,7 +12,7 @@ import javax.interceptor.Interceptor
 @ApplicationScoped
 class SecurityConfiguration(
     @ConfigProperty(name = "security.authentication.enabled", defaultValue = "true")
-    val authorizationEnabled : Boolean) : AuthorizationController() {
+    private val authorizationEnabled : Boolean) : AuthorizationController() {
 
     override fun isAuthorizationEnabled(): Boolean {
         return this.authorizationEnabled
