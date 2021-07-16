@@ -1,5 +1,6 @@
 #1.0.8
-- Upgrade to Quarkus 2.0.1
+- Upgrade to Quarkus 2.0.2
+- Integration Tests added
 
 #1.0.7
 - added CalleService.sayMyName instead of isAlive
