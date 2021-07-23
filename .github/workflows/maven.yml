@@ -6,6 +6,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      DOCKER_TARGET_PLATFORM: linux/arm/v8  
 
     steps:
     - name: Login to Docker Hub
