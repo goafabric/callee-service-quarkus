@@ -1,5 +1,5 @@
 #1.1.0
-- Upgrade to Quarkus 2.1.1
+- No Changes Sync Release
 
 #1.0.8
 - Upgrade to Quarkus 2.0.3
