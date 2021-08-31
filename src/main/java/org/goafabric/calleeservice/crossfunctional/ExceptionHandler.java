@@ -23,6 +23,6 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
         
         log.error(e.getMessage(), e);
         return Response.status(status)
-                .entity("an error occured: " + e.getMessage()).build();
+                .entity("An error occured: " + e.getMessage()).build();
     }
 }
