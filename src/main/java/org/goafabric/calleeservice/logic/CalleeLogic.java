@@ -32,7 +32,7 @@ public class CalleeLogic {
     @SneakyThrows
     private void sleep() {
         Thread.sleep(sleepTime.get());
-        if (sleepTime.get() > 0l) {
+        if (sleepTime.get() > 10000l) {
             throw new UnsupportedOperationException("Simulated Timeout exceeded");
         }
     }
