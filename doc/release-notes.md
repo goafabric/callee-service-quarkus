@@ -1,5 +1,6 @@
 #1.1.1
 - Upgrade to Graalvm 21.2 for Arm64
+- Upgrade to Quarkus 2.2.1
 
 #1.1.0
 - No Changes Sync Release
