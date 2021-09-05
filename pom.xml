@@ -69,6 +69,19 @@
             <artifactId>quarkus-elytron-security-properties-file</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-oidc</artifactId>
+        </dependency>
+
+        <!--
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-keycloak-authorization</artifactId>
+        </dependency>
+        -->
+
+
         <!-- test -->
         <dependency>
             <groupId>io.quarkus</groupId>
