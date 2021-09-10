@@ -1,3 +1,4 @@
+/*
 package org.goafabric.calleeservice.crossfunctional;
 
 import io.quarkus.security.spi.runtime.AuthorizationController;
@@ -17,3 +18,4 @@ public class SecurityConfiguration extends AuthorizationController {
     @ConfigProperty(name = "security.authentication.enabled", defaultValue = "true")
     boolean isAuthorizationEnabled;
 }
+*/

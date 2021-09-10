@@ -1,6 +1,5 @@
 package org.goafabric.calleeservice.service;
 
-import io.quarkus.security.Authenticated;
 import org.goafabric.calleeservice.logic.CalleeLogic;
 
 import javax.inject.Inject;
@@ -9,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/callees")
 //@RolesAllowed("standard_role")
-@Authenticated
+//@Authenticated
 @Produces(MediaType.APPLICATION_JSON)
 public class CalleeService {
     @Inject
