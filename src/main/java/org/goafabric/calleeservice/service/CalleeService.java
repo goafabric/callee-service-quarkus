@@ -1,23 +1,22 @@
 package org.goafabric.calleeservice.service;
 
-import io.quarkus.security.identity.SecurityIdentity;
 import org.goafabric.calleeservice.logic.CalleeLogic;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("/callees")
 @RolesAllowed("standard_role")
-//@Authenticated
 @Produces(MediaType.APPLICATION_JSON)
 public class CalleeService {
     @Inject
     CalleeLogic calleeLogic;
-
-    @Inject
-    SecurityIdentity securityIdentity;
 
     @GET
     @Path("sayMyName")
