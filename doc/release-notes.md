@@ -1,6 +1,7 @@
 #1.1.2
 - Upgrade to Quarkus 2.3.0
 - build updated to jdk 17
+- 
 
 #1.1.1
 - Upgrade to Graalvm 21.2 for Arm64
