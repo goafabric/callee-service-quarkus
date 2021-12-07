@@ -105,28 +105,44 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>${exec-maven-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>docker push</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>npm</executable>
-                                    <arguments>
-                                        <argument>install</argument>
-                                        <argument>--prefix</argument>
-                                        <argument>${project.build.directory}/classes/META-INF/resources/</argument>
-                                        <argument>cgm-hello-world@0.2.0</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>1.11.3</version>
+                    <executions>
+                        <execution>
+                            <id>install-node-and-npm</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>install-node-and-npm</goal>
+                            </goals>
+                            <configuration>
+                                <!-- See https://nodejs.org/en/download/ for latest node and npm (lts) versions -->
+                                <nodeVersion>v10.23.0</nodeVersion>
+                                <npmVersion>6.14.6</npmVersion>
+                                <installDirectory>${project.build.directory}</installDirectory>
+                            </configuration>
+                        </execution>
+
+                        <execution>
+                            <id>download-frontend</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>npm</goal>
+                            </goals>
+                            <!-- Optional configuration which provides for running any npm command -->
+                            <configuration>
+                                <arguments>install --prefix ${project.build.directory}/classes/META-INF/resources/ cgm-hello-world@0.2.0</arguments>
+                                <!--
+                                <npmRegistryURL>https://artifactory.cgm.ag/api/npm/global.npm.virtual/</npmRegistryURL>
+                                   -->
+                                <installDirectory>${project.build.directory}</installDirectory>
+                                <workingDirectory>${project.build.directory}</workingDirectory>
+
+                            </configuration>
+                        </execution>
+                    </executions>
                     </plugin>
+
                 </plugins>
             </build>
         </profile>
