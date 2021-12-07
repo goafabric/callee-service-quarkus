@@ -129,9 +129,7 @@
                                     <goal>npm</goal>
                                 </goals>
                                 <configuration>
-                                    <arguments>install --prefix ${project.build.directory}/classes/META-INF/resources/
-                                        cgm-hello-world@0.2.0
-                                    </arguments>
+                                    <arguments>install --prefix ${project.build.directory}/classes/META-INF/resources/ cgm-hello-world@0.2.0</arguments>
                                     <installDirectory>${project.build.directory}</installDirectory>
                                     <workingDirectory>${project.build.directory}</workingDirectory>
                                     <!--<npmRegistryURL>https://secret.url</npmRegistryURL>-->
