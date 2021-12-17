@@ -2,12 +2,14 @@ package org.goafabric.calleeservice.logic;
 
 import lombok.NonNull;
 import lombok.SneakyThrows;
+import org.goafabric.calleeservice.crossfunctional.DurationLog;
 import org.goafabric.calleeservice.service.Callee;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.concurrent.atomic.AtomicLong;
 
 @ApplicationScoped
+@DurationLog
 public class CalleeLogic {
     private AtomicLong sleepTime = new AtomicLong(0L);
 

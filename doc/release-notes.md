@@ -1,6 +1,7 @@
 #1.1.2
 - Upgrade to Quarkus 2.5.2
 - build updated to jdk 17
+- DurationLogger added
 
 #1.1.1
 - Upgrade to Graalvm 21.2 for Arm64
