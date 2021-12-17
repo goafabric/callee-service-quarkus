@@ -1,13 +1,15 @@
 #Working
+Core
 - Web, ExceptionHandler
 - Lombok, Mapstruct
 
 - Health, Prometheus
-- Swagger
+- Tracing
+- OpenAPI
 
 - Security
 
-- Tracing
+- DurationLogger Aspect
 
 #build times apple silicon:
 - console: 1m
