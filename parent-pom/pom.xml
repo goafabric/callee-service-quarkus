@@ -250,6 +250,8 @@
 
                 <quarkus.native.builder-image>goafabric/quarkus-build-aarch64:java11-21.3.0</quarkus.native.builder-image>
                 <quarkus.jib.platforms>linux/arm64/v8</quarkus.jib.platforms>
+
+                <!--<quarkus.jib.base-native-image>registry.access.redhat.com/ubi8/ubi-minimal:8.5</quarkus.jib.base-native-image>-->
             </properties>
             <dependencies>
                 <dependency>
