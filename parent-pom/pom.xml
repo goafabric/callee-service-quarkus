@@ -175,7 +175,7 @@
                 <quarkus.package.type>native</quarkus.package.type>
                 <quarkus.native.container-build>true</quarkus.native.container-build>
 
-                <quarkus.container-image.push>false</quarkus.container-image.push>
+                <quarkus.container-image.push>true</quarkus.container-image.push>
                 <quarkus.container-image.build>true</quarkus.container-image.build>
                 <quarkus.container-image.image>${docker.registry}/${project.artifactId}:${project.version}</quarkus.container-image.image>
 
@@ -213,6 +213,7 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!--
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
@@ -234,6 +235,7 @@
                             </execution>
                         </executions>
                     </plugin>
+                    -->
                 </plugins>
             </build>
         </profile>
