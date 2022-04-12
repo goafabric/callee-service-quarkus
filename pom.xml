@@ -69,6 +69,12 @@
             <artifactId>quarkus-elytron-security-properties-file</artifactId>
         </dependency>
 
+        <!-- jib -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-container-image-jib</artifactId>
+        </dependency>
+
         <!-- test -->
         <dependency>
             <groupId>io.quarkus</groupId>
