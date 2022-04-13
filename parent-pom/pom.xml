@@ -19,7 +19,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Quarkus -->
-        <quarkus.platform.version>2.8.0.CR1</quarkus.platform.version>
+        <quarkus.platform.version>2.8.0.Final</quarkus.platform.version>
 
         <!-- 3rd party -->
         <lombok.version>1.18.22</lombok.version>
