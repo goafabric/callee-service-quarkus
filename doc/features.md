@@ -18,5 +18,5 @@ Core
 
 #build times github:
 - console: 3m
-- web: 4m
-- jpa: 6m
+- web: 5m
+- jpa: 8m

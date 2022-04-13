@@ -1,10 +1,8 @@
 package org.goafabric.calleeservice.crossfunctional;
 
-import io.quarkus.security.identity.SecurityIdentity;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.Priority;
-import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
@@ -17,9 +15,6 @@ import java.util.stream.Collectors;
 @DurationLog
 @Slf4j
 public class DurationLogger {
-    @Inject
-    SecurityIdentity securityIdentity;
-
     @AroundInvoke
     Object logInvocation(InvocationContext context) throws Exception {
         final long startTime = System.currentTimeMillis();
@@ -27,8 +22,8 @@ public class DurationLogger {
         try {
             ret = context.proceed();
         } finally {
-            log.info("{} took {}ms for user {}", toString(context.getMethod()),
-                    System.currentTimeMillis() - startTime, getUserName());
+            log.info("{} took {}ms for user: {} , tenant: {}", toString(context.getMethod()),
+                    System.currentTimeMillis() - startTime, HttpInterceptor.getUserName(), HttpInterceptor.getTenantId());
         }
         return ret;
     }
@@ -41,7 +36,4 @@ public class DurationLogger {
                 method.getName(), parameterTypes);
     }
 
-    private String getUserName() {
-        return (securityIdentity.getPrincipal() == null) ? "" : securityIdentity.getPrincipal().getName();
-    }
 }
