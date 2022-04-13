@@ -21,5 +21,4 @@ jobs:
         java-version: '17'
     - name: Build with Maven
 #      run: mvn -B clean verify --file pom.xml
-#      run: mvn -B clean deploy -P docker-image-native --file pom.xml
-      run: mvn --version     
+      run: mvn -B clean deploy -P docker-image-native --file pom.xml
