@@ -12,7 +12,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("/callees")
-@RolesAllowed("standard_role")
+@RolesAllowed("standard")
 @Produces(MediaType.APPLICATION_JSON)
 public class CalleeService {
     @Inject
