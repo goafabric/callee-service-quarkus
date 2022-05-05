@@ -6,6 +6,7 @@ import io.quarkus.oidc.TenantConfigResolver;
 import io.quarkus.security.identity.SecurityIdentity;
 import io.smallrye.mutiny.Uni;
 import io.vertx.ext.web.RoutingContext;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.ConfigProvider;
@@ -48,7 +49,7 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
         return createOidcConfig(routingContext.request().getHeader("X-TenantId"));
     }
 
-    private Uni<OidcTenantConfig> createOidcConfig(String tenantId) {
+    private Uni<OidcTenantConfig> createOidcConfig(@NonNull String tenantId) {
         final OidcTenantConfig tenantConfig = new OidcTenantConfig();
         final Config config = ConfigProvider.getConfig();
 
