@@ -48,7 +48,7 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
 
         final OidcTenantConfig tenantConfig = new OidcTenantConfig();
 
-        tenantConfig.setTenantId(tenantId);
+        tenantConfig.setTenantId(tenantId != null ? tenantId : "0");
         tenantConfig.setApplicationType(
                 OidcTenantConfig.ApplicationType.valueOf(ConfigProvider.getConfig().getValue("quarkus.oidc.application-type", String.class).toUpperCase()));
 
