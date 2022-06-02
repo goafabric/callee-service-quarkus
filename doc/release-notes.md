@@ -1,5 +1,5 @@
 #1.2.3
-- Upgrade to Quarkus 2.9.0
+- Upgrade to Quarkus 2.9.2
 
 #1.2.2    
 - Upgrade to Quarkus 2.7.5
