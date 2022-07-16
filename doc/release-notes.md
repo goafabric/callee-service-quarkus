@@ -1,3 +1,6 @@
+#1.2.3
+- Upgrade to Quarkus 2.10.2
+
 #1.2.2    
 - Upgrade to Quarkus 2.7.5
 - Upgrade to Lombok 1.18.22
