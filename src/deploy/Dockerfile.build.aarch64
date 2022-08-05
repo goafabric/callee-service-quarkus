@@ -1,12 +1,12 @@
-FROM ghcr.io/graalvm/graalvm-ce:ol8-java11@sha256:2cb80ecc68d5cd295cf098f1693df34483193272c6de57b4c3e70ff159f4353a AS build
+FROM ghcr.io/graalvm/graalvm-ce:ol8-java17-22.2.0
 RUN gu install native-image
 WORKDIR /project
 VOLUME ["/project"]
 ENTRYPOINT ["native-image"]
 
 #https://dev.to/nevernull/building-a-native-java-application-for-arm64-with-quarkus-2n9m
-#docker build -f Dockerfile.build.aarch64 -t goafabric/quarkus-build-aarch64:java11-22.0.0 .
-#docker push goafabric/quarkus-build-aarch64:java11-22.0.0
+#docker build -f Dockerfile.build.aarch64 -t goafabric/quarkus-native-image-arm64v8:22.2-java17 .
+#docker push goafabric/quarkus-native-image-arm64v8:22.2-java17
 
-#docker run --rm -it ghcr.io/graalvm/graalvm-ce:ol8-java11@sha256:2cb80ecc68d5cd295cf098f1693df34483193272c6de57b4c3e70ff159f4353a /bin/bash
+#docker run --rm -it ghcr.io/graalvm/graalvm-ce:ol8-java17-22.2.0 /bin/bash
 
