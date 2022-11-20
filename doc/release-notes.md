@@ -1,5 +1,6 @@
 # 2.0.1
 - Upgrade to Quarkus 2.14.1
+- Multiarch Builder used
 
 # 2.0.0
 - Parity with Quarkus Version
