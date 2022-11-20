@@ -6,4 +6,3 @@ docker run --pull always --name calle-service-quarkus --rm -p50900:50900 goafabr
 
 # run native image arm64
 docker run --pull always --name calle-service-quarkus --rm -p50900:50900 goafabric/callee-service-quarkus-arm64v8:2.0.1-upgrade-SNAPSHOT
-
