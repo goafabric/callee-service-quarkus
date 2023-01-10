@@ -28,13 +28,4 @@ class CalleeServiceTest {
                     .statusCode(200);
     }
 
-    @Test
-    public void setSleepTime() {
-        given()
-                .auth().basic(new String(Base64.getDecoder().decode("YWRtaW4=")), new String(Base64.getDecoder().decode("YWRtaW4=")))
-                .when().get("/callees/setSleepTime?sleepTime=0")
-                .then()
-                .statusCode(200);
-    }
-
 }
