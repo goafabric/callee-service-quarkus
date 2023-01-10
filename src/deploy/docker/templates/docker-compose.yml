@@ -37,6 +37,19 @@ services:
       - quarkus.log.file.path=/usr/share/logs/application.log
       - quarkus.log.file.format=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n%throwable
 
+  nginx:
+    container_name: ${_Values_root_name}-nginx
+    image: nginx:1.22.1
+    restart: 'no'
+    ports:
+      - 8080:80
+    networks:
+      - ${_Values_root_name}-net
+    volumes:
+      - ./nginx/:/etc/nginx/
+    depends_on:
+      - application
+
 volumes:
     tmp:
     applogs:
