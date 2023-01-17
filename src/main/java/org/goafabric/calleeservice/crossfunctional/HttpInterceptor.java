@@ -2,6 +2,8 @@ package org.goafabric.calleeservice.crossfunctional;
 
 import io.quarkus.oidc.OidcRequestContext;
 import io.quarkus.oidc.OidcTenantConfig;
+import io.quarkus.oidc.TenantConfigResolver;
+import io.quarkus.oidc.common.runtime.OidcCommonConfig;
 import io.quarkus.security.identity.SecurityIdentity;
 import io.smallrye.mutiny.Uni;
 import io.vertx.ext.web.RoutingContext;
@@ -21,7 +23,7 @@ import java.io.IOException;
 @Provider
 
 @ApplicationScoped
-public class HttpInterceptor implements ContainerRequestFilter, ContainerResponseFilter {
+public class HttpInterceptor implements ContainerRequestFilter, ContainerResponseFilter, TenantConfigResolver {
     @Inject SecurityIdentity securityIdentity;
     private static final ThreadLocal<String> tenantId = new ThreadLocal<>();
     private static final ThreadLocal<String> userName = new ThreadLocal<>();
@@ -59,7 +61,17 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
         tenantConfig.setAuthServerUrl(ConfigProvider.getConfig()
                 .getValue("quarkus.oidc.auth-server-url", String.class).replaceAll("TENANT_ID", tenantId));
 
+        createClientSecret(tenantConfig);
         return Uni.createFrom().item(tenantConfig);
+    }
+
+    private static void createClientSecret(OidcTenantConfig tenantConfig) {
+        final OidcCommonConfig.Credentials credentials = new OidcCommonConfig.Credentials();
+        OidcCommonConfig.Credentials.Secret secret = new OidcCommonConfig.Credentials.Secret();
+        secret.setValue(ConfigProvider.getConfig().getValue("quarkus.oidc.credentials.client-secret.value", String.class));
+        secret.setMethod(OidcCommonConfig.Credentials.Secret.Method.BASIC);
+        credentials.setClientSecret(secret);
+        tenantConfig.setCredentials(credentials);
     }
 
 }
