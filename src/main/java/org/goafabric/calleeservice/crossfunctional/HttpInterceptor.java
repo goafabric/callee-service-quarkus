@@ -59,7 +59,7 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
 
         tenantConfig.setClientId(ConfigProvider.getConfig().getValue("quarkus.oidc.client-id", String.class));
         tenantConfig.setAuthServerUrl(ConfigProvider.getConfig()
-                .getValue("quarkus.oidc.auth-server-url", String.class).replaceAll("TENANT_ID", tenantId));
+                .getValue("quarkus.oidc.auth-server-url", String.class).replaceAll("TENANT_ID", tenantId != null ? tenantId : "0"));
 
         createClientSecret(tenantConfig);
         return Uni.createFrom().item(tenantConfig);
