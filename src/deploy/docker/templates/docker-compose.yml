@@ -20,22 +20,27 @@ services:
     networks:
       - ${_Values_root_name}-net
     environment:
-      #web
-      - TZ=Europe/Berlin
-      - quarkus.http.port=${_Values_service_port}
-      - quarkus.http.io-threads=20
+      #application
+      TZ: "Europe/Berlin"
+      quarkus.http.port: "${_Values_service_port}"
+      quarkus.http.io-threads: "20"
+
       #security
-      - security.authentication.enabled=false
+      security.authentication.enabled: "false"
+
+      #jaeger
+      quarkus.jaeger.service-name: "callee-service"
+
+      quarkus.jaeger.endpoint: "http://host.docker.internal:14268/api/traces"
+      quarkus.jaeger.sampler-type: "probabilistic"
+      quarkus.jaeger.sampler-param: "1"
+      quarkus.jaeger.propagation: "b3"
+
       #log levels
-      - quarkus.log.level=INFO
-      - quarkus.log.category."org.goafabric".level=INFO
-      - quarkus.log.category."org.flywaydb.core".level=INFO
-      - quarkus.log.category."org.hibernate".level=INFO
-      #log file settings
-      - quarkus.log.file.enable=true
-      - quarkus.log.file.rotation.max-file-size=10M
-      - quarkus.log.file.path=/usr/share/logs/application.log
-      - quarkus.log.file.format=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n%throwable
+      quarkus.log.level: "INFO"
+      quarkus.log.category."org.goafabric".level: "INFO"
+      quarkus.log.category."org.flywaydb.core".level: "INFO"
+      quarkus.log.category."org.hibernate".level: "INFO"
 
   nginx:
     container_name: ${_Values_root_name}-nginx
@@ -50,7 +55,8 @@ services:
       - ./nginx/:/etc/nginx/
       - ./ssl/:/etc/ssl/
     depends_on:
-      - application
+      application:
+        condition: service_started
 
 volumes:
     tmp:
