@@ -1,10 +1,7 @@
 package org.goafabric.calleeservice.crossfunctional;
 
 import io.quarkus.security.identity.SecurityIdentity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
@@ -14,9 +11,12 @@ import java.io.IOException;
 
 @Provider
 public class HttpInterceptor implements ContainerRequestFilter, ContainerResponseFilter {
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private final SecurityIdentity securityIdentity;
 
-    @Inject SecurityIdentity securityIdentity;
+    public HttpInterceptor(SecurityIdentity securityIdentity) {
+        this.securityIdentity = securityIdentity;
+    }
+
     private static final ThreadLocal<String> tenantId = new ThreadLocal<>();
     private static final ThreadLocal<String> userName = new ThreadLocal<>();
 
@@ -24,13 +24,17 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
     public void filter(ContainerRequestContext request) throws IOException {
         tenantId.set(request.getHeaderString(request.getHeaderString("X-TenantId")));
         userName.set(request.getHeaderString("X-Auth-Request-Preferred-Username") != null ? request.getHeaderString("X-Auth-Request-Preferred-Username")
-                :  securityIdentity.getPrincipal().getName());
+                :  securityIdentity != null ? securityIdentity.getPrincipal().getName() : "");
     }
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) throws IOException {
         tenantId.remove();
         userName.remove();
+    }
+
+    public static void setTenantId(String tenantId) {
+        HttpInterceptor.tenantId.set(tenantId);
     }
 
     public static String getTenantId() {
