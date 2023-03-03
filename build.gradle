@@ -1,0 +1,65 @@
+plugins {
+	id 'jacoco'
+	id 'java'
+}
+
+ext {
+	set('dockerRegistry', "goafabric")
+}
+
+dependencies {
+	constraints {
+		implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+		annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+	}
+
+	implementation platform('io.quarkus:quarkus-bom:2.15.2.Final')
+}
+
+group = 'org.goafabric'
+version = '2.0.2-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+
+	mavenCentral()
+}
+
+dependencies {
+	//web
+	implementation 'io.quarkus:quarkus-arc'
+	implementation 'io.quarkus:quarkus-resteasy'
+	implementation 'io.quarkus:quarkus-resteasy-jackson'
+	implementation 'org.jboss.logmanager:log4j2-jboss-logmanager'
+
+	//monitoring
+	implementation 'io.quarkus:quarkus-smallrye-health'
+	implementation 'io.quarkus:quarkus-micrometer-registry-prometheus'
+	implementation 'io.quarkus:quarkus-smallrye-openapi'
+	implementation 'io.quarkus:quarkus-smallrye-opentracing'
+
+	//security
+	implementation 'io.quarkus:quarkus-elytron-security-properties-file'
+
+	implementation 'io.quarkus:quarkus-container-image-jib'
+
+	//code generation
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+	implementation 'org.mapstruct:mapstruct'
+	annotationProcessor 'org.mapstruct:mapstruct-processor'
+
+	//test
+	testImplementation 'io.quarkus:quarkus-junit5'
+	testImplementation 'io.rest-assured:rest-assured'
+	testImplementation 'io.quarkus:quarkus-rest-client'
+	testImplementation 'io.quarkus:quarkus-rest-client-jackson'
+}
+
+test {
+	useJUnitPlatform()
+	exclude '**/*NRIT*'
+	finalizedBy jacocoTestReport
+}
