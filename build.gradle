@@ -1,6 +1,7 @@
 plugins {
 	id 'jacoco'
 	id 'java'
+	id 'io.quarkus' version '2.15.2.Final'
 }
 
 ext {
@@ -13,7 +14,7 @@ dependencies {
 		annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
 	}
 
-	implementation platform('io.quarkus:quarkus-bom:2.15.2.Final')
+	implementation enforcedPlatform('io.quarkus:quarkus-bom:2.15.2.Final')
 }
 
 group = 'org.goafabric'
@@ -21,7 +22,6 @@ version = '2.0.2-SNAPSHOT'
 sourceCompatibility = '17'
 
 repositories {
-
 	mavenCentral()
 }
 
@@ -62,4 +62,7 @@ test {
 	useJUnitPlatform()
 	exclude '**/*NRIT*'
 	finalizedBy jacocoTestReport
+
+	systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
 }
+
