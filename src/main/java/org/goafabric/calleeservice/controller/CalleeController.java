@@ -1,4 +1,4 @@
-package org.goafabric.calleeservice.service;
+package org.goafabric.calleeservice.controller;
 
 import org.goafabric.calleeservice.logic.CalleeLogic;
 
@@ -9,10 +9,10 @@ import javax.ws.rs.core.MediaType;
 @Path("/callees")
 @RolesAllowed("standard_role")
 @Produces(MediaType.APPLICATION_JSON)
-public class CalleeService {
+public class CalleeController {
     private final CalleeLogic calleeLogic;
 
-    public CalleeService(CalleeLogic calleeLogic) {
+    public CalleeController(CalleeLogic calleeLogic) {
         this.calleeLogic = calleeLogic;
     }
 

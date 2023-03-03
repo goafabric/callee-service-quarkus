@@ -1,4 +1,4 @@
-package org.goafabric.calleeservice.service;
+package org.goafabric.calleeservice.controller;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import java.util.Base64;
 import static io.restassured.RestAssured.given;
 
 @QuarkusTest
-class CalleeServiceTest {
+class CalleeControllerTest {
 
     @Test
     public void sayMyName() {
