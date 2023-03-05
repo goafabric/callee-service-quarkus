@@ -69,6 +69,8 @@ def archSuffix = (System.properties['os.arch'] == 'aarch64') ? "-arm64v8" : ""
 tasks.named('imageBuild') {
 	System.setProperty("quarkus.package.type", "native")
 	System.setProperty("quarkus.native.container-build", "true")
+
+	System.setProperty("quarkus.container-image.build", "true")
 	System.setProperty("quarkus.container-image.builder", "jib")
 	System.setProperty("quarkus.container-image.push", "false")
 	System.setProperty("quarkus.native.native-image-xmx", "4096m")
