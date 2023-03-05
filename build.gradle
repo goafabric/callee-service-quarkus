@@ -64,3 +64,15 @@ test {
 	systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
 }
 
+def archSuffix = (System.properties['os.arch'] == 'aarch64') ? "-arm64v8" : ""
+
+
+tasks.named('quarkusBuild') {
+	System.setProperty("quarkus.container-image.builder", "jib")
+	System.setProperty("quarkus.package.type", "native")
+	System.setProperty("quarkus.native.container-build", "true")
+	System.setProperty("quarkus.container-image.push", "false")
+	System.setProperty("quarkus.native.native-image-xmx", "4096m")
+	System.setProperty("quarkus.container-image.image", "${dockerRegistry}/${project.name}-native${archSuffix}:${project.version}")
+	System.setProperty("quarkus.jib.base-native-image", "registry.access.redhat.com/ubi8/ubi-minimal:8.5")
+}
