@@ -1,5 +1,4 @@
 plugins {
-	id 'jacoco'
 	id 'java'
 	id 'io.quarkus' version '2.15.2.Final'
 }
@@ -28,19 +27,19 @@ repositories {
 dependencies {
 	//web
 	implementation 'io.quarkus:quarkus-arc'
-	implementation 'io.quarkus:quarkus-resteasy'
 	implementation 'io.quarkus:quarkus-resteasy-jackson'
 	implementation 'org.jboss.logmanager:log4j2-jboss-logmanager'
 
 	//monitoring
 	implementation 'io.quarkus:quarkus-smallrye-health'
-	implementation 'io.quarkus:quarkus-micrometer-registry-prometheus'
 	implementation 'io.quarkus:quarkus-smallrye-openapi'
 	implementation 'io.quarkus:quarkus-smallrye-opentracing'
+	implementation 'io.quarkus:quarkus-micrometer-registry-prometheus'
 
 	//security
 	implementation 'io.quarkus:quarkus-elytron-security-properties-file'
 
+	//jib
 	implementation 'io.quarkus:quarkus-container-image-jib'
 
 	//code generation
@@ -54,15 +53,14 @@ dependencies {
 	//test
 	testImplementation 'io.quarkus:quarkus-junit5'
 	testImplementation 'io.rest-assured:rest-assured'
-	testImplementation 'io.quarkus:quarkus-rest-client'
 	testImplementation 'io.quarkus:quarkus-rest-client-jackson'
+	testImplementation 'io.quarkus:quarkus-jacoco'
 }
 
 test {
+	dependsOn('quarkusBuild')
 	useJUnitPlatform()
 	exclude '**/*NRIT*'
-	finalizedBy jacocoTestReport
-
 	systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
 }
 
