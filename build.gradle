@@ -66,18 +66,22 @@ test {
 
 def archSuffix = (System.properties['os.arch'] == 'aarch64') ? "-arm64v8" : ""
 
+/*
 tasks.named('imageBuild') {
+}
+
+ */
+
+task dockerImageNative(type:Exec) { dependsOn('quarkusBuild')
 	System.setProperty("quarkus.package.type", "native")
 	System.setProperty("quarkus.native.container-build", "true")
 
-	System.setProperty("quarkus.container-image.build", "true")
-	System.setProperty("quarkus.container-image.builder", "jib")
 	System.setProperty("quarkus.container-image.push", "false")
-	System.setProperty("quarkus.native.native-image-xmx", "4096m")
+	System.setProperty("quarkus.container-image.build", "true")
 	System.setProperty("quarkus.container-image.image", "${dockerRegistry}/${project.name}${archSuffix}:${project.version}")
-	System.setProperty("quarkus.jib.base-native-image", "registry.access.redhat.com/ubi8/ubi-minimal:8.5")
-}
 
-task dockerImageNative(type:Exec) { dependsOn('imageBuild')
+	//System.setProperty("quarkus.container-image.builder", "jib")
+	System.setProperty("quarkus.native.native-image-xmx", "4096m")
+	System.setProperty("quarkus.jib.base-native-image", "registry.access.redhat.com/ubi8/ubi-minimal:8.5")
 	commandLine 'docker', 'push', "${dockerRegistry}/${project.name}${archSuffix}:${project.version}"
 }
