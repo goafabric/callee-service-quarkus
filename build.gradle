@@ -85,3 +85,4 @@ task dockerImageNative(type:Exec) { dependsOn('quarkusBuild')
 	commandLine 'docker', 'push', "${dockerRegistry}/${project.name}${archSuffix}:${project.version}"
 }
 
+// ./gradlew clean build -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true
