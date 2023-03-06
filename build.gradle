@@ -13,7 +13,7 @@ dependencies {
 		annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
 	}
 
-	implementation enforcedPlatform('io.quarkus:quarkus-bom:2.15.2.Final')
+	implementation enforcedPlatform('io.quarkus:quarkus-bom:2.16.4.Final')
 }
 
 group = 'org.goafabric'
