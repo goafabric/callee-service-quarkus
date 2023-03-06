@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'io.quarkus' version '2.15.2.Final'
+	id 'io.quarkus' version '2.16.4.Final'
 }
 
 ext {
@@ -64,21 +64,22 @@ test {
 	systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
 }
 
-task dockerImageNativeRun(type:Exec) { dependsOn('quarkusBuild')
-	group 'native'
+task dockerImageNative(type:Exec) { dependsOn('quarkusBuild') group 'native'
+	
+	if (gradle.startParameter.taskNames.contains('dockerImageNative')) {
+		def archSuffix = (System.properties['os.arch'] == 'aarch64') ? "-arm64v8" : ""
+		if (System.properties['os.arch'] == 'aarch64') {
+			System.setProperty("quarkus.jib.platforms", "linux/arm64/v8")
+		}
 
-	def archSuffix = (System.properties['os.arch'] == 'aarch64') ? "-arm64v8" : ""
-	if (System.properties['os.arch'] == 'aarch64') {
-		System.setProperty("quarkus.jib.platforms", "linux/arm64/v8")
+		System.setProperty("quarkus.package.type", "native")
+		System.setProperty("quarkus.native.container-build", "true")
+		System.setProperty("quarkus.container-image.build", "true")
+		System.setProperty("quarkus.native.native-image-xmx", "4096m")
+		System.setProperty("quarkus.jib.base-native-image", "registry.access.redhat.com/ubi8/ubi-minimal:8.5")
+		System.setProperty("quarkus.container-image.image", "${dockerRegistry}/${project.name}${archSuffix}:${project.version}")
+
+		commandLine 'docker', 'push', "${dockerRegistry}/${project.name}${archSuffix}:${project.version}"
 	}
-
-	System.setProperty("quarkus.package.type", "native")
-	System.setProperty("quarkus.native.container-build", "true")
-	System.setProperty("quarkus.container-image.build", "true")
-	System.setProperty("quarkus.native.native-image-xmx", "4096m")
-	System.setProperty("quarkus.jib.base-native-image", "registry.access.redhat.com/ubi8/ubi-minimal:8.5")
-	System.setProperty("quarkus.container-image.image", "${dockerRegistry}/${project.name}${archSuffix}:${project.version}")
-
-	commandLine 'docker', 'push', "${dockerRegistry}/${project.name}${archSuffix}:${project.version}"
 }
 
