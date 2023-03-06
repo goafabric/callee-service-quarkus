@@ -80,6 +80,7 @@ task dockerImageNative(type:Exec) { dependsOn('quarkusBuild') group 'native'
 		System.setProperty("quarkus.container-image.image", "${dockerRegistry}/${project.name}${archSuffix}:${project.version}")
 
 		commandLine 'docker', 'push', "${dockerRegistry}/${project.name}${archSuffix}:${project.version}"
+		finalizedBy('testNative')
 	}
 }
 
