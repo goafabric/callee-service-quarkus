@@ -1,27 +1,22 @@
 package org.goafabric.calleeservice.logic;
 
-import lombok.NonNull;
-import org.goafabric.calleeservice.crossfunctional.DurationLog;
 import org.goafabric.calleeservice.controller.Callee;
+import org.goafabric.calleeservice.crossfunctional.DurationLog;
 
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 @DurationLog
 public class CalleeLogic {
-
-    public Callee sayMyName(@NonNull String name) {
-        return Callee.builder()
-                .message("Your name is: " + name).build();
+    public Callee sayMyName(String name) {
+        return new Callee("0", "Your name is: " + name);
     }
 
-    public Callee sayMyOtherName(@NonNull String name) {
-        return Callee.builder()
-                .message("Your name is: " + name).build();
+    public Callee sayMyOtherName(String name) {
+        return new Callee("0", "Your other name is: " + name);
     }
 
-    public Callee save(@NonNull Callee callee) {
-        return Callee.builder()
-                .message("Storing your message: " + callee.getMessage()).build();
+    public Callee save(Callee callee) {
+        return new Callee("0", "Storing your message: " + callee.message());
     }
 }
