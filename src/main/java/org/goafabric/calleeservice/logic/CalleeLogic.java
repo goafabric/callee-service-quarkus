@@ -3,7 +3,7 @@ package org.goafabric.calleeservice.logic;
 import org.goafabric.calleeservice.controller.Callee;
 import org.goafabric.calleeservice.crossfunctional.DurationLog;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 @DurationLog
