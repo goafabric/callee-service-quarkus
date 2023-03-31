@@ -1,5 +1,6 @@
 package org.goafabric.calleeservice.controller;
 
+import jakarta.validation.Valid;
 import org.goafabric.calleeservice.logic.CalleeLogic;
 
 import jakarta.annotation.security.RolesAllowed;
@@ -31,7 +32,7 @@ public class CalleeController {
     @POST
     @Path("save")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Callee save(Callee callee) {
+    public Callee save(@Valid Callee callee) {
         return calleeLogic.save(callee);
     }
 }
