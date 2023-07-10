@@ -1,4 +1,4 @@
-package org.goafabric.calleeservice.crossfunctional;
+package org.goafabric.calleeservice.extensions;
 
 import io.quarkus.security.identity.SecurityIdentity;
 
