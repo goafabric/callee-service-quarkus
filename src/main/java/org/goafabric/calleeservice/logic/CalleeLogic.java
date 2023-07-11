@@ -1,12 +1,9 @@
 package org.goafabric.calleeservice.logic;
 
-import org.goafabric.calleeservice.controller.Callee;
-import org.goafabric.calleeservice.extensions.DurationLog;
-
 import jakarta.enterprise.context.ApplicationScoped;
+import org.goafabric.calleeservice.controller.Callee;
 
 @ApplicationScoped
-@DurationLog
 public class CalleeLogic {
     public Callee sayMyName(String name) {
         return new Callee("0", "Your name is: " + name);
