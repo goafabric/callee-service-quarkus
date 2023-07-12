@@ -3,6 +3,7 @@ version = "3.2.0-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 val dockerRegistry = "goafabric"
+jacoco.toolVersion = "0.8.9"
 
 plugins {
 	java
