@@ -1,6 +1,6 @@
 # 3.2.0
 - Upgrade to Quarkus 3.4.1
-- Java 20 Compatibility
+- Java 21 Compatibility
 
 # 3.0.0
 - Upgrade to Quarkus 3.0.0
