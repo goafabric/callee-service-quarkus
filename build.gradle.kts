@@ -1,5 +1,5 @@
 group = "org.goafabric"
-version = "3.4.1-SNAPSHOT"
+version = "3.4.0-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_20
 
 val dockerRegistry = "goafabric"
@@ -8,7 +8,7 @@ jacoco.toolVersion = "0.8.10"
 plugins {
 	java
 	jacoco
-	id("io.quarkus") version "3.4.1"
+	id("io.quarkus") version "3.4.0"
 }
 
 repositories {
@@ -22,7 +22,7 @@ dependencies {
 		testImplementation("org.assertj:assertj-core:3.4.1")
 	}
 
-	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.4.1"))
+	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.4.0"))
 }
 dependencies {
 	//web
