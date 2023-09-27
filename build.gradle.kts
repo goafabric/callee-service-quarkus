@@ -1,5 +1,5 @@
 group = "org.goafabric"
-version = "3.2.0-SNAPSHOT"
+version = "3.4.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 val dockerRegistry = "goafabric"
@@ -8,7 +8,7 @@ jacoco.toolVersion = "0.8.9"
 plugins {
 	java
 	jacoco
-	id("io.quarkus") version "3.2.0.Final"
+	id("io.quarkus") version "3.4.1"
 }
 
 repositories {
@@ -22,7 +22,7 @@ dependencies {
 		testImplementation("org.assertj:assertj-core:3.4.1")
 	}
 
-	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.2.0.Final"))
+	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.4.1"))
 }
 dependencies {
 	//web
@@ -71,6 +71,7 @@ tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("quarkus
 			System.setProperty("quarkus.jib.platforms", "linux/arm64/v8")
 		}
 
+		System.setProperty("quarkus.native.builder-image", "quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-20")
 		System.setProperty("quarkus.package.type", "native")
 		System.setProperty("quarkus.native.container-build", "true")
 		System.setProperty("quarkus.container-image.build", "true")
