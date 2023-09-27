@@ -1,6 +1,6 @@
 group = "org.goafabric"
 version = "3.4.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_20
 
 val dockerRegistry = "goafabric"
 jacoco.toolVersion = "0.8.9"
@@ -17,8 +17,8 @@ repositories {
 
 dependencies {
 	constraints {
-		implementation("org.mapstruct:mapstruct:1.5.3.Final")
-		annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")
+		implementation("org.mapstruct:mapstruct:1.5.5.Final")
+		annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 		testImplementation("org.assertj:assertj-core:3.4.1")
 	}
 
