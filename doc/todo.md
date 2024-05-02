@@ -1,0 +1,4 @@
+- span export error
+- Tenant (MDC) for logging and Tracing missing
+- TenantContext from Spring Boot
+- Shut security off
