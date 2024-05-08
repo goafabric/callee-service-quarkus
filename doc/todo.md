@@ -1,3 +1,1 @@
-- Tenant (MDC) for logging and Tracing missing
-- TenantContext from Spring Boot
-- upgrade to latest version
+- TenantContext + Tenant (MDC) for logging and Tracing missing
