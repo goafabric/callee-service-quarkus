@@ -7,7 +7,7 @@ val dockerRegistry = "goafabric"
 plugins {
 	java
 	jacoco
-	id("io.quarkus") version "3.7.4"
+	id("io.quarkus") version "3.10.0"
 	id("net.researchgate.release") version "3.0.2"
 }
 
@@ -22,7 +22,7 @@ dependencies {
 		testImplementation("org.assertj:assertj-core:3.5.0")
 	}
 
-	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.7.4"))
+	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.10.0"))
 }
 dependencies {
 	//web
@@ -49,7 +49,7 @@ dependencies {
 	//test
 	testImplementation("io.quarkus:quarkus-junit5")
 	testImplementation("io.rest-assured:rest-assured")
-	testImplementation("io.quarkus:quarkus-rest-client-jackson")
+	testImplementation("io.quarkus:quarkus-resteasy-client-jackson")
 	testImplementation("io.quarkus:quarkus-jacoco")
 }
 
@@ -60,9 +60,6 @@ tasks.withType<Test> {
 	systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
 }
 
-System.setProperty("quarkus.package.type", "jar")
-System.setProperty("quarkus.native.container-build", "false")
-
 tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("quarkusBuild", "testNative")
 	if (gradle.startParameter.taskNames.contains("dockerImageNative")) {
 		val archSuffix = if (System.getProperty("os.arch").equals("aarch64")) "-arm64v8" else ""
@@ -72,9 +69,12 @@ tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("quarkus
 		}
 
 		System.setProperty("quarkus.native.builder-image", "quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21")
-		System.setProperty("quarkus.package.type", "native")
+		System.setProperty("quarkus.package.jar.enabled", "false")
+
+		System.setProperty("quarkus.native.enabled", "true")
 		System.setProperty("quarkus.native.container-build", "true")
 		System.setProperty("quarkus.container-image.build", "true")
+
 		System.setProperty("quarkus.native.native-image-xmx", "4096m")
 		System.setProperty("quarkus.jib.base-native-image", "registry.access.redhat.com/ubi8/ubi-minimal:8.5")
 		System.setProperty("quarkus.container-image.image", "${dockerRegistry}/${project.name}${archSuffix}:${project.version}")
