@@ -10,6 +10,7 @@ import jakarta.ws.rs.ext.Provider;
 import org.jboss.resteasy.core.interception.jaxrs.PostMatchContainerRequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import java.io.IOException;
 
@@ -29,7 +30,7 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
     @Override
     public void filter(ContainerRequestContext request) throws IOException {
         TenantContext.setContext(request);
-        //MDC.put("tenantId", getTenantId());
+        MDC.put("tenantId", TenantContext.getTenantId());
         if (request instanceof PostMatchContainerRequestContext) {
             var method = ((PostMatchContainerRequestContext) request).getResourceMethod().getMethod();
             log.info("{} called for user {} ", method.getDeclaringClass().getName() + "." + method.getName(), TenantContext.getUserName());
@@ -39,6 +40,6 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
     @Override
     public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) throws IOException {
         TenantContext.removeContext();
-        //MDC.remove("tenantId");
+        MDC.remove("tenantId");
     }
 }
