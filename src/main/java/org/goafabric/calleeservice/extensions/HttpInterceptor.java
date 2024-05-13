@@ -1,11 +1,9 @@
 package org.goafabric.calleeservice.extensions;
 
 import io.opentelemetry.api.trace.Span;
-import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Context;
 import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.ContainerResponseContext;
@@ -23,9 +21,6 @@ import java.io.IOException;
 public class HttpInterceptor implements ContainerRequestFilter, ContainerResponseFilter {
     private static final Logger log = LoggerFactory.getLogger("HttpInterceptor");
     private final SecurityIdentity securityIdentity;
-
-    @Inject
-    Tracer tracer;
 
     public HttpInterceptor(SecurityIdentity securityIdentity) {
         this.securityIdentity = securityIdentity;
