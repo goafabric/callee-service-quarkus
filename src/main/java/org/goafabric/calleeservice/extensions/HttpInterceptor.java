@@ -1,7 +1,11 @@
 package org.goafabric.calleeservice.extensions;
 
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.api.trace.Tracer;
+import io.opentelemetry.context.Context;
 import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.ContainerResponseContext;
@@ -20,6 +24,9 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
     private static final Logger log = LoggerFactory.getLogger("HttpInterceptor");
     private final SecurityIdentity securityIdentity;
 
+    @Inject
+    Tracer tracer;
+
     public HttpInterceptor(SecurityIdentity securityIdentity) {
         this.securityIdentity = securityIdentity;
     }
@@ -30,7 +37,7 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
     @Override
     public void filter(ContainerRequestContext request) throws IOException {
         TenantContext.setContext(request);
-        MDC.put("tenantId", TenantContext.getTenantId());
+        configureLogsAndTracing();
         if (request instanceof PostMatchContainerRequestContext) {
             var method = ((PostMatchContainerRequestContext) request).getResourceMethod().getMethod();
             log.info("{} called for user {} ", method.getDeclaringClass().getName() + "." + method.getName(), TenantContext.getUserName());
@@ -41,5 +48,10 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
     public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) throws IOException {
         TenantContext.removeContext();
         MDC.remove("tenantId");
+    }
+
+    private static void configureLogsAndTracing() {
+        MDC.put("tenantId", TenantContext.getTenantId());
+        Span.fromContext(Context.current()).setAttribute("tenant.id", TenantContext.getTenantId());
     }
 }
