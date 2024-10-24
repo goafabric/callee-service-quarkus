@@ -36,9 +36,6 @@ dependencies {
 	implementation("io.quarkus:quarkus-opentelemetry")
 	implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
 
-	//security
-	implementation("io.quarkus:quarkus-elytron-security-properties-file")
-
 	//jib
 	implementation("io.quarkus:quarkus-container-image-jib")
 
