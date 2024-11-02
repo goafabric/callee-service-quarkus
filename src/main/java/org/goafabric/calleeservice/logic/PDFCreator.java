@@ -1,48 +1,34 @@
 package org.goafabric.calleeservice.logic;
 
-import com.lowagie.text.Anchor;
-import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
+import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 @ApplicationScoped
 public class PDFCreator {
 
-    public void create()  {
+    public byte[] create() {
+        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
 
-        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-            // step 1: creation of a document-object
-            Document document = new Document();
-            // step 2:
-            // we create 3 different writers that listen to the document
-            PdfWriter pdf = PdfWriter.getInstance(document, baos);
+        //create a PDF writer instance and pass output streamtry {
+        var out = new ByteArrayOutputStream();
+        PdfWriter writer = PdfWriter.getInstance(document, out); //new FileOutputStream("./helloworld.pdf"));
 
-            // step 3: we open the document
-            document.open();
-            // step 4: we add a paragraph to the document
-            document.add(new Paragraph("Hello World"));
-            // we make references
-            Anchor pdfRef = new Anchor("see Hello World in PDF.");
-            pdfRef.setReference(".//HelloWorldPdf.pdf");
+        document.open();
+        document.addAuthor("Author-Name");
+        document.addCreationDate();
 
+        document.add(new Paragraph("Hello World -- Page 1"));
+        document.add(new Paragraph("This is my first PDF."));
 
-            // we add the references, but only to the HTML page:
+        document.newPage();
 
-            pdf.pause();
-            document.add(pdfRef);
-            document.add(Chunk.NEWLINE);
-            pdf.resume();
-
-            // step 5: we close the document
-            document.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        document.add(new Paragraph("Hello World -- Page 2"));
+        document.close();
+        return out.toByteArray();
     }
 }

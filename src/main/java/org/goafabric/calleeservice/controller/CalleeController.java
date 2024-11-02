@@ -4,6 +4,7 @@ import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import org.goafabric.calleeservice.logic.CalleeLogic;
 import org.goafabric.calleeservice.logic.PDFCreator;
 
@@ -37,5 +38,14 @@ public class CalleeController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Callee save(Callee callee) {
         return calleeLogic.save(callee);
+    }
+
+    @GET
+    @Path("createpdf")
+    public Response createPdf() {
+        return Response.ok(pdfCreator.create())
+                .type("application/pdf")
+                .header("Content-Disposition", "inline; filename=\"your-file.pdf\"")
+                .build();
     }
 }
