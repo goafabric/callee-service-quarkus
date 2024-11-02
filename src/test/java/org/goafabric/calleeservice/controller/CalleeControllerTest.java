@@ -28,7 +28,6 @@ class CalleeControllerTest {
                     .statusCode(200);
     }
 
-    /*
     @Test
     public void createPdf() {
         given()
@@ -37,8 +36,6 @@ class CalleeControllerTest {
                 .then()
                 .statusCode(200);
     }
-
-     */
 
 
 }
