@@ -33,7 +33,7 @@ dependencies {
 	//monitoring
 	implementation("io.quarkus:quarkus-smallrye-health")
 	implementation("io.quarkus:quarkus-smallrye-openapi")
-	implementation("io.quarkus:quarkus-opentelemetry")
+	//implementation("io.quarkus:quarkus-opentelemetry")
 	implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
 
 	//jib

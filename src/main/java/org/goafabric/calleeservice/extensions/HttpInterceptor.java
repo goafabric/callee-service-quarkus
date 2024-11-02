@@ -1,7 +1,5 @@
 package org.goafabric.calleeservice.extensions;
 
-import io.opentelemetry.api.trace.Span;
-import io.opentelemetry.context.Context;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
@@ -41,6 +39,6 @@ public class HttpInterceptor implements ContainerRequestFilter, ContainerRespons
 
     private static void configureLogsAndTracing() {
         MDC.put("tenantId", TenantContext.getTenantId());
-        Span.fromContext(Context.current()).setAttribute("tenant.id", TenantContext.getTenantId());
+        //Span.fromContext(Context.current()).setAttribute("tenant.id", TenantContext.getTenantId());
     }
 }
