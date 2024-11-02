@@ -43,6 +43,10 @@ dependencies {
 	implementation("org.mapstruct:mapstruct")
 	annotationProcessor("org.mapstruct:mapstruct-processor")
 
+	//pdf
+	implementation("io.quarkiverse.openpdf:quarkus-openpdf:3.1.2")
+
+
 	//test
 	testImplementation("io.quarkus:quarkus-junit5")
 	testImplementation("io.rest-assured:rest-assured")
