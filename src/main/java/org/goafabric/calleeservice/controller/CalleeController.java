@@ -23,7 +23,6 @@ public class CalleeController {
     @GET
     @Path("sayMyName")
     public Callee sayMyName(@QueryParam("name") String name) {
-        pdfCreator.create();
         return calleeLogic.sayMyName(name);
     }
 
