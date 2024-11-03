@@ -10,3 +10,5 @@
 /*gradle/
 /gradlew*
 /build/
+
+/src/main/jib/work/*.so

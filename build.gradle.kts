@@ -61,7 +61,13 @@ tasks.withType<Test> {
 	systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
 }
 
-tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("quarkusBuild", "testNative")
+tasks.register<Copy>("copyAwtLibs") {
+	from("src/main/jib/work/" + if (System.getProperty("os.arch").equals("aarch64")) "arm64" else "amd64")
+	into("src/main/jib/work")
+}
+
+tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("copyAwtLibs", "quarkusBuild", "testNative")
+
 	if (gradle.startParameter.taskNames.contains("dockerImageNative")) {
 		val archSuffix = if (System.getProperty("os.arch").equals("aarch64")) "-arm64v8" else ""
 
