@@ -51,11 +51,11 @@ jobs:
       - name: Container Images
         run: gradle dockerImageNative
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifacts
-          path: build/  # Specify the path to the build folder
+#      - name: Upload build artifacts
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: build-artifacts
+#          path: build/
 
   release:
     runs-on: ubuntu-latest
