@@ -9,7 +9,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import java.io.ByteArrayOutputStream;
 
 @ApplicationScoped
-public class PDFCreator {
+public class OpenPDFCreator {
 
     public byte[] create() {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);

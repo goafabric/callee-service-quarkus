@@ -45,6 +45,7 @@ dependencies {
 
 	//pdf
 	implementation("io.quarkiverse.openpdf:quarkus-openpdf:3.1.2")
+	implementation("io.quarkiverse.pdfbox:quarkus-pdfbox:1.0.0")
 
 
 	//test
