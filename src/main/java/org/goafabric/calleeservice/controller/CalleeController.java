@@ -1,25 +1,15 @@
 package org.goafabric.calleeservice.controller;
 
 import jakarta.annotation.security.RolesAllowed;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 import org.goafabric.calleeservice.logic.CalleeLogic;
-import org.goafabric.calleeservice.logic.OpenPDFCreator;
-import org.goafabric.calleeservice.logic.PDFBoxCreator;
 
 @Path("/callees")
 @RolesAllowed("standard_role")
 @Produces(MediaType.APPLICATION_JSON)
 public class CalleeController {
     private final CalleeLogic calleeLogic;
-
-    @Inject
-    OpenPDFCreator openPdfCreator;
-
-    @Inject
-    PDFBoxCreator pdfBoxCreator;
 
     public CalleeController(CalleeLogic calleeLogic) {
         this.calleeLogic = calleeLogic;
@@ -44,12 +34,4 @@ public class CalleeController {
         return calleeLogic.save(callee);
     }
 
-    @GET
-    @Path("createpdf")
-    public Response createPdf() {
-        return Response.ok(openPdfCreator.create())
-                .type("application/pdf")
-                .header("Content-Disposition", "inline; filename=\"your-file.pdf\"")
-                .build();
-    }
 }

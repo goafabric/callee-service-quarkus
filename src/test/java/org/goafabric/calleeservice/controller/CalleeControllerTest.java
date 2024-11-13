@@ -32,7 +32,7 @@ class CalleeControllerTest {
     public void createPdf() {
         given()
                 .auth().basic(new String(Base64.getDecoder().decode("YWRtaW4=")), new String(Base64.getDecoder().decode("YWRtaW4=")))
-                .when().get("/callees/createpdf")
+                .when().get("/pdfs/createpdf")
                 .then()
                 .statusCode(200);
     }
