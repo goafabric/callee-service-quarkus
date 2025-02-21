@@ -7,8 +7,8 @@ val dockerRegistry = "goafabric"
 plugins {
 	java
 	jacoco
-	id("io.quarkus") version "3.16.1"
-	id("net.researchgate.release") version "3.0.2"
+	id("io.quarkus") version "3.19.0"
+	id("net.researchgate.release") version "3.1.0"
 }
 
 repositories {
@@ -17,12 +17,12 @@ repositories {
 
 dependencies {
 	constraints {
-		implementation("org.mapstruct:mapstruct:1.6.2")
-		annotationProcessor("org.mapstruct:mapstruct-processor:1.6.2")
-		testImplementation("org.assertj:assertj-core:3.26.3")
+		implementation("org.mapstruct:mapstruct:1.6.3")
+		annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
+		testImplementation("org.assertj:assertj-core:3.27.3")
 	}
 
-	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.16.1"))
+	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.19.0"))
 }
 dependencies {
 	//web
