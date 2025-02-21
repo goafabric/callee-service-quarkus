@@ -1,3 +1,9 @@
+# 3.19.0
+- Upgrade of Quarkus 
+
+# 3.10.2
+- Upgrade to Quarkus 3.10.2             
+
 # 3.10.0
 - Upgrade to Quarkus 3.10.0
 - Parity with Spring Boot Example concerning Tenant Handling, Basic Auth ....
