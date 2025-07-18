@@ -1,4 +1,4 @@
-# 3.22.3
+# 3.24.3
 - Upgrade of Quarkus
 - Native images are now arm only
 
