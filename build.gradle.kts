@@ -3,12 +3,13 @@ val version: String by project
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 val dockerRegistry = "goafabric"
-
 plugins {
 	java
 	jacoco
 	id("io.quarkus") version "3.31.2"
 	id("net.researchgate.release") version "3.1.0"
+
+	kotlin("jvm") version "2.3.0"
 }
 
 repositories {
@@ -42,6 +43,11 @@ dependencies {
 	//code generation
 	implementation("org.mapstruct:mapstruct")
 	annotationProcessor("org.mapstruct:mapstruct-processor")
+
+	//kotlin
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 	//test
 	testImplementation("io.quarkus:quarkus-junit5")
