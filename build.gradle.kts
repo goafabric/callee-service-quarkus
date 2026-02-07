@@ -21,6 +21,7 @@ dependencies {
 		implementation("org.mapstruct:mapstruct:1.6.3")
 		annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
 		testImplementation("org.assertj:assertj-core:3.27.7")
+		testImplementation("com.tngtech.archunit:archunit-junit5:1.4.1")
 	}
 
 	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.31.2"))
@@ -54,6 +55,8 @@ dependencies {
 	testImplementation("io.rest-assured:rest-assured")
 	testImplementation("io.quarkus:quarkus-resteasy-client-jackson")
 	testImplementation("io.quarkus:quarkus-jacoco")
+	testImplementation("com.tngtech.archunit:archunit-junit5")
+
 }
 
 tasks.withType<Test> {
