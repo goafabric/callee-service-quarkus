@@ -1,6 +1,6 @@
-package org.goafabric.calleeservice.controller;
+package org.goafabric.calleeservice.controller
 
-public record Callee(
-        String id,
-        String message
-) {}
+data class Callee(
+    val id: String?,
+    val message: String?
+)
