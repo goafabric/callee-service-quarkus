@@ -1,7 +1,7 @@
 package org.goafabric.calleeservice.logic
 
 import jakarta.enterprise.context.ApplicationScoped
-import org.goafabric.calleeservice.controller.Callee
+import org.goafabric.calleeservice.controller.dto.Callee
 
 @ApplicationScoped
 class CalleeLogic {

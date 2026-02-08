@@ -61,7 +61,7 @@ object ApplicationRulesTest {
             "java..",
             "javax..",
             "jakarta..",
-            "org.springframework..",
+            "io.quarkus..", "org.jboss..",
             "org.slf4j..",
             "com.fasterxml.jackson..","tools.jackson..",
             "org.flywaydb..",

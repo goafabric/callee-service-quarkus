@@ -3,6 +3,7 @@ package org.goafabric.calleeservice.controller
 import jakarta.annotation.security.RolesAllowed
 import jakarta.ws.rs.*
 import jakarta.ws.rs.core.MediaType
+import org.goafabric.calleeservice.controller.dto.Callee
 import org.goafabric.calleeservice.logic.CalleeLogic
 
 @Path("/callees")
