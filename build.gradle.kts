@@ -1,6 +1,6 @@
 val group: String by project
 val version: String by project
-java.sourceCompatibility = JavaVersion.VERSION_21
+java.sourceCompatibility = JavaVersion.VERSION_25
 
 val dockerRegistry = "goafabric"
 
@@ -63,7 +63,7 @@ tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("quarkus
 			System.setProperty("quarkus.jib.platforms", "linux/arm64/v8")
 		}
 
-		System.setProperty("quarkus.native.builder-image", "quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21")
+		System.setProperty("quarkus.native.builder-image", "quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-25")
 		System.setProperty("quarkus.package.jar.enabled", "false")
 
 		System.setProperty("quarkus.native.enabled", "true")
