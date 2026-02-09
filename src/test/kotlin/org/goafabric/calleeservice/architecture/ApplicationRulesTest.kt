@@ -86,7 +86,10 @@ object ApplicationRulesTest {
 
             "kotlin..",
             "kotlinx..",
-            "org.jetbrains.annotations.."
+            "org.jetbrains.annotations..",
+
+            "org.eclipse.microprofile..",
+            "io.mcarle.konvert.."
         )
         .because("Only core and allowed libraries should be used to avoid unnecessary third-party dependencies")
 

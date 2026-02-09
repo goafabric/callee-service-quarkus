@@ -5,7 +5,9 @@ import com.tngtech.archunit.core.importer.ImportOption.DoNotIncludeTests
 import com.tngtech.archunit.junit.AnalyzeClasses
 import com.tngtech.archunit.junit.ArchTest
 import com.tngtech.archunit.lang.ArchRule
+import com.tngtech.archunit.lang.syntax.ArchRuleDefinition
 import com.tngtech.archunit.library.Architectures
+import jakarta.ws.rs.Produces
 import org.goafabric.calleeservice.Application
 
 
@@ -21,12 +23,12 @@ internal object ControllerRulesTest {
         .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
         .whereLayer("Logic").mayOnlyBeAccessedByLayers("Controller")
 
-    /*
     @ArchTest
     val controllerNaming: ArchRule = ArchRuleDefinition.classes()
-        .that().areAnnotatedWith(RestController::class.java)
+        .that().areAnnotatedWith(Produces::class.java)
         .should().haveSimpleNameEndingWith("Controller")
 
+    /*
     @ArchTest
     val controllerShouldNotUseCrossOrigin: ArchRule = ArchRuleDefinition.classes()
         .should().notBeAnnotatedWith(CrossOrigin::class.java)
