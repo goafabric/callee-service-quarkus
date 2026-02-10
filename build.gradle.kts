@@ -45,10 +45,6 @@ dependencies {
 	//jib
 	implementation("io.quarkus:quarkus-container-image-jib")
 
-	//code generation
-	implementation("org.mapstruct:mapstruct")
-	annotationProcessor("org.mapstruct:mapstruct-processor")
-
 	//kotlin
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
