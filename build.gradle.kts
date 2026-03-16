@@ -12,7 +12,7 @@ plugins {
 	id("io.quarkus") version "3.32.3"
 	id("net.researchgate.release") version "3.1.0"
 
-	kotlin("jvm") version "2.3.10"
+	kotlin("jvm") version "2.3.20"
 }
 
 repositories {
