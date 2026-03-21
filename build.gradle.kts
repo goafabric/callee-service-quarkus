@@ -56,10 +56,17 @@ dependencies {
 }
 
 tasks.withType<Test> {
-	dependsOn("quarkusBuild")
 	useJUnitPlatform()
 	exclude("**/*NRIT*")
 	systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
+	finalizedBy("jacocoTestReport")
+}
+
+tasks.jacocoTestReport {
+	executionData.setFrom(
+		fileTree(layout.buildDirectory.get()).include("jacoco/test.exec", "jacoco-quarkus.exec")
+	)
+	reports { xml.required.set(true); csv.required.set(true); html.required.set(true) }
 }
 
 tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("quarkusBuild", "testNative")
