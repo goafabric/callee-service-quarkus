@@ -6,12 +6,10 @@ import org.junit.jupiter.api.Test
 import java.util.*
 
 @QuarkusTest
-class CalleeControllerTest {
+open class CalleeControllerTest {
     @Test
     fun sayMyName() {
         RestAssured.given()
-            .auth()
-            .basic(String(Base64.getDecoder().decode("YWRtaW4=")), String(Base64.getDecoder().decode("YWRtaW4=")))
             .`when`().get("/callees/sayMyName?name=Heisenberg")
             .then()
             .statusCode(200)
@@ -20,8 +18,6 @@ class CalleeControllerTest {
     @Test
     fun sayMyOtherName() {
         RestAssured.given()
-            .auth()
-            .basic(String(Base64.getDecoder().decode("YWRtaW4=")), String(Base64.getDecoder().decode("YWRtaW4=")))
             .`when`().get("/callees/sayMyOtherName/Andreas")
             .then()
             .statusCode(200)
