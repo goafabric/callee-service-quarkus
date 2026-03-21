@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import java.util.*
 
 @QuarkusTest
-open class CalleeControllerTest {
+class CalleeControllerTest {
     @Test
     fun sayMyName() {
         RestAssured.given()
