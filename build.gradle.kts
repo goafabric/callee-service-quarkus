@@ -22,7 +22,7 @@ repositories {
 dependencies {
 	constraints {
 		testImplementation("org.assertj:assertj-core:3.27.7")
-		testImplementation("com.tngtech.archunit:archunit-junit5:1.4.1")
+		testImplementation("com.tngtech.archunit:archunit-junit5:1.4.2")
 	}
 
 	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.34.5"))
