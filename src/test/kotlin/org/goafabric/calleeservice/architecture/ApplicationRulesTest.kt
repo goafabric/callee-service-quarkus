@@ -59,7 +59,8 @@ class ApplicationRulesTest {
             "org.jetbrains.annotations..",
 
             "org.eclipse.microprofile..",
-            "io.mcarle.konvert.."
+            "io.mcarle.konvert..",
+            "io.quarkiverse.mcp.."
         )
         .because("Only core and allowed libraries should be used to avoid unnecessary third-party dependencies")
 
