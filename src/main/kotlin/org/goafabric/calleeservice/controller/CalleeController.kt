@@ -12,20 +12,20 @@ import org.goafabric.calleeservice.logic.CalleeLogic
 class CalleeController(private val calleeLogic: CalleeLogic) {
     @GET
     @Path("sayMyName")
-    fun sayMyName(@QueryParam("name") name: String?): Callee? {
+    fun sayMyName(@QueryParam("name") name: String): Callee {
         return calleeLogic.sayMyName(name)
     }
 
     @GET
     @Path("sayMyOtherName/{name}")
-    fun sayMyOtherName(@PathParam("name") name: String?): Callee? {
+    fun sayMyOtherName(@PathParam("name") name: String): Callee {
         return calleeLogic.sayMyOtherName(name)
     }
 
     @POST
     @Path("save")
     @Consumes(MediaType.APPLICATION_JSON)
-    fun save(callee: Callee): Callee? {
+    fun save(callee: Callee): Callee {
         return calleeLogic.save(callee)
     }
 }
