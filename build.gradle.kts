@@ -33,7 +33,7 @@ dependencies {
 	implementation("io.quarkus:quarkus-resteasy-jackson")
 	implementation("org.jboss.logmanager:log4j2-jboss-logmanager")
 
-	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:1.12.0")
+	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:1.12.0") //https://docs.quarkiverse.io/quarkus-mcp-server/dev/guides-implementing-tools.html
 
 	//monitoring
 	implementation("io.quarkus:quarkus-smallrye-health")
