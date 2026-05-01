@@ -45,7 +45,7 @@ dependencies {
 	implementation("io.quarkus:quarkus-container-image-jib")
 	
 	//mcp
-	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:1.12.0") //https://docs.quarkiverse.io/quarkus-mcp-server/dev/guides-implementing-tools.html
+	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http") //https://docs.quarkiverse.io/quarkus-mcp-server/dev/guides-implementing-tools.html
 
 	//kotlin
 	implementation("io.quarkus:quarkus-kotlin")
