@@ -26,14 +26,14 @@ dependencies {
 	}
 
 	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.35.0"))
+	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:1.12.0")
 }
+
 dependencies {
 	//web
 	implementation("io.quarkus:quarkus-arc")
 	implementation("io.quarkus:quarkus-resteasy-jackson")
 	implementation("org.jboss.logmanager:log4j2-jboss-logmanager")
-
-	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:1.12.0") //https://docs.quarkiverse.io/quarkus-mcp-server/dev/guides-implementing-tools.html
 
 	//monitoring
 	implementation("io.quarkus:quarkus-smallrye-health")
@@ -43,6 +43,9 @@ dependencies {
 
 	//jib
 	implementation("io.quarkus:quarkus-container-image-jib")
+	
+	//mcp
+	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:1.12.0") //https://docs.quarkiverse.io/quarkus-mcp-server/dev/guides-implementing-tools.html
 
 	//kotlin
 	implementation("io.quarkus:quarkus-kotlin")
