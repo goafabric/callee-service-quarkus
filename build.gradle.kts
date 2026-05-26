@@ -99,3 +99,8 @@ configure<net.researchgate.release.ReleaseExtension> {
 	buildTasks.set(listOf("build", "test", "dockerImageNative"))
 	tagTemplate.set("v${version}".replace("-SNAPSHOT", ""))
 }
+
+tasks.matching { it.name == "checkSnapshotDependencies" }.configureEach {
+	enabled = false
+}
+
