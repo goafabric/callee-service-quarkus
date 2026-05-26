@@ -1,14 +1,18 @@
-val group: String by project
-val version: String by project
-java.sourceCompatibility = JavaVersion.VERSION_21
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+val javaVersion = "25"
+java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
+tasks.withType<KotlinCompile>().all { compilerOptions { jvmTarget.set(JvmTarget.fromTarget(javaVersion)) } }
 
 val dockerRegistry = "goafabric"
-
 plugins {
-	java
 	jacoco
-	id("io.quarkus") version "3.24.3"
+	id("io.quarkus") version "3.35.4"
 	id("net.researchgate.release") version "3.1.0"
+
+	kotlin("jvm") version "2.3.21"
 }
 
 repositories {
@@ -17,13 +21,14 @@ repositories {
 
 dependencies {
 	constraints {
-		implementation("org.mapstruct:mapstruct:1.6.3")
-		annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
-		testImplementation("org.assertj:assertj-core:3.27.3")
+		testImplementation("org.assertj:assertj-core:3.27.7")
+		testImplementation("com.tngtech.archunit:archunit-junit5:1.4.2")
 	}
 
-	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.24.3"))
+	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.36.0"))
+	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:1.12.1")
 }
+
 dependencies {
 	//web
 	implementation("io.quarkus:quarkus-arc")
@@ -38,23 +43,35 @@ dependencies {
 
 	//jib
 	implementation("io.quarkus:quarkus-container-image-jib")
+	
+	//mcp
+	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http") //https://docs.quarkiverse.io/quarkus-mcp-server/dev/guides-implementing-tools.html
 
-	//code generation
-	implementation("org.mapstruct:mapstruct")
-	annotationProcessor("org.mapstruct:mapstruct-processor")
+	//kotlin
+	implementation("io.quarkus:quarkus-kotlin")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 	//test
 	testImplementation("io.quarkus:quarkus-junit5")
 	testImplementation("io.rest-assured:rest-assured")
 	testImplementation("io.quarkus:quarkus-resteasy-client-jackson")
 	testImplementation("io.quarkus:quarkus-jacoco")
+	testImplementation("com.tngtech.archunit:archunit-junit5")
+
 }
 
 tasks.withType<Test> {
-	dependsOn("quarkusBuild")
 	useJUnitPlatform()
 	exclude("**/*NRIT*")
 	systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
+	finalizedBy("jacocoTestReport")
+}
+
+tasks.jacocoTestReport {
+	executionData.setFrom(
+		fileTree(layout.buildDirectory.get()).include("jacoco/test.exec", "jacoco-quarkus.exec")
+	)
+	reports { xml.required.set(true); csv.required.set(true); html.required.set(true) }
 }
 
 tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("quarkusBuild", "testNative")
@@ -63,7 +80,7 @@ tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("quarkus
 			System.setProperty("quarkus.jib.platforms", "linux/arm64/v8")
 		}
 
-		System.setProperty("quarkus.native.builder-image", "quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-21")
+		System.setProperty("quarkus.native.builder-image", "quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-25")
 		System.setProperty("quarkus.package.jar.enabled", "false")
 
 		System.setProperty("quarkus.native.enabled", "true")
