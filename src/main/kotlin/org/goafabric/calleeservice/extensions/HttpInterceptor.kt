@@ -2,7 +2,12 @@ package org.goafabric.calleeservice.extensions
 
 import io.opentelemetry.api.trace.Span
 import io.opentelemetry.context.Context
+import io.quarkiverse.mcp.server.McpConnection
+import io.quarkiverse.mcp.server.ToolFilter
+import io.quarkiverse.mcp.server.ToolManager.ToolInfo
+import io.vertx.core.http.HttpServerRequest
 import jakarta.enterprise.context.ApplicationScoped
+import jakarta.inject.Inject
 import jakarta.ws.rs.container.ContainerRequestContext
 import jakarta.ws.rs.container.ContainerRequestFilter
 import jakarta.ws.rs.container.ContainerResponseContext
@@ -16,7 +21,12 @@ import java.io.IOException
 
 @Provider
 @ApplicationScoped
-class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter {
+class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter, ToolFilter {
+    private val log: Logger = LoggerFactory.getLogger("HttpInterceptor")
+
+    @Inject
+    lateinit var serverRequest: HttpServerRequest
+
     @Throws(IOException::class)
     override fun filter(request: ContainerRequestContext) {
         UserContext.setContext(request)
@@ -25,7 +35,7 @@ class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter {
             val method = request.getResourceMethod().getMethod()
             log.info(
                 "{} called for user {} ",
-                method.getDeclaringClass().getName() + "." + method.getName(),
+                method.declaringClass.getName() + "." + method.name,
                 UserContext.userName
             )
         }
@@ -40,7 +50,18 @@ class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter {
         MDC.remove("tenantId")
     }
 
-    private val log: Logger = LoggerFactory.getLogger("HttpInterceptor")
+
+    override fun test(tool: ToolInfo, connection: McpConnection): Boolean {
+        UserContext.setContext(
+            serverRequest.getHeader("X-TenantId"),
+            serverRequest.getHeader("X-OrganizationId"),
+            serverRequest.getHeader("X-Auth-Request-Preferred-Username"),
+            serverRequest.getHeader("X-UserInfo")
+        )
+        configureLogsAndTracing()
+        log.info("got mcp call")
+        return true
+    }
 
     private fun configureLogsAndTracing() {
         MDC.put("tenantId", UserContext.tenantId)
