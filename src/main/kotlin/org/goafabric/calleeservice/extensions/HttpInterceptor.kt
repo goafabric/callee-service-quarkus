@@ -24,9 +24,6 @@ import java.io.IOException
 class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter, ToolFilter {
     private val log: Logger = LoggerFactory.getLogger("HttpInterceptor")
 
-    @Inject
-    lateinit var serverRequest: HttpServerRequest
-
     @Throws(IOException::class)
     override fun filter(request: ContainerRequestContext) {
         UserContext.setContext(request)
@@ -50,6 +47,8 @@ class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter, ToolFil
         MDC.remove("tenantId")
     }
 
+    @Inject
+    lateinit var serverRequest: HttpServerRequest
 
     override fun test(tool: ToolInfo, connection: McpConnection): Boolean {
         UserContext.setContext(
