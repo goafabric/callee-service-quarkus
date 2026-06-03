@@ -30,11 +30,7 @@ class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter, ToolFil
         configureLogsAndTracing()
         if (request is PostMatchContainerRequestContext) {
             val method = request.getResourceMethod().getMethod()
-            log.info(
-                "{} called for user {} ",
-                method.declaringClass.getName() + "." + method.name,
-                UserContext.userName
-            )
+            log.info("{} http call for user {} ", method.declaringClass.getName() + "." + method.name, UserContext.userName)
         }
     }
 
@@ -51,14 +47,9 @@ class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter, ToolFil
     lateinit var serverRequest: HttpServerRequest
 
     override fun test(tool: ToolInfo, connection: McpConnection): Boolean {
-        UserContext.setContext(
-            serverRequest.getHeader("X-TenantId"),
-            serverRequest.getHeader("X-OrganizationId"),
-            serverRequest.getHeader("X-Auth-Request-Preferred-Username"),
-            serverRequest.getHeader("X-UserInfo")
-        )
+        UserContext.setContext(serverRequest)
         configureLogsAndTracing()
-        log.info("got mcp call")
+        log.info("{} mcp call for user {} ", tool.name(), UserContext.userName)
         return true
     }
 

@@ -2,6 +2,7 @@ package org.goafabric.calleeservice.extensions
 
 import com.fasterxml.jackson.databind.json.JsonMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import io.vertx.core.http.HttpServerRequest
 import jakarta.ws.rs.container.ContainerRequestContext
 import java.util.*
 
@@ -25,6 +26,13 @@ object UserContext {
         setContext(
             request.getHeaderString("X-TenantId"), request.getHeaderString("X-OrganizationId"),
             request.getHeaderString("X-Auth-Request-Preferred-Username"), request.getHeaderString("X-UserInfo")
+        )
+    }
+
+    fun setContext(request: HttpServerRequest) {
+        setContext(
+            request.getHeader("X-TenantId"), request.getHeader("X-OrganizationId"),
+            request.getHeader("X-Auth-Request-Preferred-Username"), request.getHeader("X-UserInfo")
         )
     }
 

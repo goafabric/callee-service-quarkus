@@ -60,7 +60,8 @@ class ApplicationRulesTest {
 
             "org.eclipse.microprofile..",
             "io.mcarle.konvert..",
-            "io.quarkiverse.mcp.."
+            "io.quarkiverse.mcp..",
+            "io.vertx.core.http.."
         )
         .because("Only core and allowed libraries should be used to avoid unnecessary third-party dependencies")
 
