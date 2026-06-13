@@ -8,7 +8,6 @@ import org.goafabric.calleeservice.controller.dto.Callee
 import org.goafabric.calleeservice.logic.CalleeLogic
 
 @Path("/callees")
-@RolesAllowed("standard_role")
 @Produces(MediaType.APPLICATION_JSON)
 class CalleeController(private val calleeLogic: CalleeLogic) {
     @GET
