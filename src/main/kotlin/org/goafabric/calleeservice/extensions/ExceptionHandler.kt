@@ -12,12 +12,16 @@ class ExceptionHandler : ExceptionMapper<Exception> {
 
     override fun toResponse(e: Exception): Response {
         val status: Response.Status
-        if (e is IllegalArgumentException) {
-            status = Response.Status.PRECONDITION_FAILED
-        } else if (e is IllegalStateException) {
-            status = Response.Status.PRECONDITION_FAILED
-        } else {
-            status = Response.Status.INTERNAL_SERVER_ERROR
+        = when (e) {
+            is IllegalArgumentException -> {
+                Response.Status.PRECONDITION_FAILED
+            }
+            is IllegalStateException -> {
+                Response.Status.PRECONDITION_FAILED
+            }
+            else -> {
+                Response.Status.INTERNAL_SERVER_ERROR
+            }
         }
 
         log.error(e.message, e)
