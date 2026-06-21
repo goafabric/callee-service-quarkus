@@ -58,4 +58,5 @@ volumes:
 
 networks:
   callee-service-net:
+    #name: ${_Values_root_name}-net
     driver: bridge
