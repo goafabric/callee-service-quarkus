@@ -1,0 +1,3 @@
+#!/bin/bash
+./gradlew clean buildNative
+./build/callee-service-quarkus-*-runner
