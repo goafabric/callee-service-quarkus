@@ -11,6 +11,7 @@ plugins {
 	jacoco
 	id("io.quarkus") version "3.38.1"
 	id("net.researchgate.release") version "3.1.0"
+	id("org.sonarqube") version "7.4.0.8496"
 
 	kotlin("jvm") version "2.4.10"
 }
@@ -97,6 +98,12 @@ tasks.register<Exec>("dockerImageNative") { group = "build" ; dependsOn("quarkus
 configure<net.researchgate.release.ReleaseExtension> {
 	buildTasks.set(listOf("build", "test", "dockerImageNative"))
 	tagTemplate.set("v${version}".replace("-SNAPSHOT", ""))
+}
+
+sonarqube {
+	properties {
+		property("sonar.exclusions", "**/.github/workflows/**")
+	}
 }
 
 tasks.matching { it.name == "checkSnapshotDependencies" }.configureEach {
