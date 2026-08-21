@@ -33,7 +33,7 @@ dependencies {
 dependencies {
 	//web
 	implementation("io.quarkus:quarkus-arc")
-	implementation("io.quarkus:quarkus-resteasy-jackson")
+	implementation("io.quarkus:quarkus-rest-jackson")
 	implementation("org.jboss.logmanager:log4j2-jboss-logmanager")
 
 	//monitoring
@@ -55,7 +55,7 @@ dependencies {
 	//test
 	testImplementation("io.quarkus:quarkus-junit5")
 	testImplementation("io.rest-assured:rest-assured")
-	testImplementation("io.quarkus:quarkus-resteasy-client-jackson")
+	testImplementation("io.quarkus:quarkus-rest-client-jackson")
 	testImplementation("io.quarkus:quarkus-jacoco")
 	testImplementation("com.tngtech.archunit:archunit-junit5")
 
