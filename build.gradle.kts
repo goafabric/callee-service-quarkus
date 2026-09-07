@@ -13,7 +13,7 @@ plugins {
 	id("net.researchgate.release") version "3.1.0"
 	id("org.sonarqube") version "7.5.0.8588"
 
-	kotlin("jvm") version "2.4.10"
+	kotlin("jvm") version "2.4.20"
 }
 
 repositories {
