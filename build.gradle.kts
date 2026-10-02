@@ -50,7 +50,7 @@ dependencies {
 
 	//kotlin
 	implementation("io.quarkus:quarkus-kotlin")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("tools.jackson.module:jackson-module-kotlin")
 
 	//test
 	testImplementation("io.quarkus:quarkus-junit5")
