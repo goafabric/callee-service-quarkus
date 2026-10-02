@@ -9,7 +9,7 @@ tasks.withType<KotlinCompile>().all { compilerOptions { jvmTarget.set(JvmTarget.
 val dockerRegistry = "goafabric"
 plugins {
 	jacoco
-	id("io.quarkus") version "3.40.1"
+	id("io.quarkus") version "4.0.0.Beta1"
 	id("net.researchgate.release") version "3.2.0"
 	id("org.sonarqube") version "7.5.0.8588"
 
@@ -24,10 +24,10 @@ dependencies {
 	constraints {
 		testImplementation("org.assertj:assertj-core:3.27.7")
 		testImplementation("com.tngtech.archunit:archunit-junit5:1.5.1")
+		implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:2.0.2")
 	}
 
-	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.40.1"))
-	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:2.0.2")
+	implementation(enforcedPlatform("io.quarkus:quarkus-bom:4.0.0.Beta1"))
 }
 
 dependencies {
@@ -46,7 +46,7 @@ dependencies {
 	implementation("io.quarkus:quarkus-container-image-jib")
 	
 	//mcp
-	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http") //https://docs.quarkiverse.io/quarkus-mcp-server/dev/guides-implementing-tools.html
+	//implementation("io.quarkiverse.mcp:quarkus-mcp-server-http") //https://docs.quarkiverse.io/quarkus-mcp-server/dev/guides-implementing-tools.html
 
 	//kotlin
 	implementation("io.quarkus:quarkus-kotlin")
