@@ -24,10 +24,10 @@ dependencies {
 	constraints {
 		testImplementation("org.assertj:assertj-core:3.27.7")
 		testImplementation("com.tngtech.archunit:archunit-junit5:1.5.1")
+		implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:2.0.2")
 	}
 
 	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.40.1"))
-	implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:2.0.2")
 }
 
 dependencies {
