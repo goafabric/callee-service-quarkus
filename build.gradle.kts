@@ -13,7 +13,7 @@ plugins {
 	id("net.researchgate.release") version "3.2.0"
 	id("org.sonarqube") version "7.5.0.8588"
 
-	kotlin("jvm") version "2.4.20"
+	kotlin("jvm") version "2.4.21"
 }
 
 repositories {
@@ -24,7 +24,7 @@ dependencies {
 	constraints {
 		testImplementation("org.assertj:assertj-core:3.27.7")
 		testImplementation("com.tngtech.archunit:archunit-junit5:1.5.1")
-		implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:2.0.2")
+		implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:2.0.3")
 	}
 
 	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.40.1"))
