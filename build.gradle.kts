@@ -27,7 +27,7 @@ dependencies {
 		implementation("io.quarkiverse.mcp:quarkus-mcp-server-http:2.0.4")
 	}
 
-	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.40.1.2"))
+	implementation(enforcedPlatform("io.quarkus:quarkus-bom:4.0.0"))
 }
 
 dependencies {
