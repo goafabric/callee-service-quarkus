@@ -1,9 +1,10 @@
 package org.goafabric.calleeservice.extensions
 
-import com.fasterxml.jackson.databind.json.JsonMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import io.vertx.core.http.HttpServerRequest
 import jakarta.ws.rs.container.ContainerRequestContext
+import tools.jackson.databind.json.JsonMapper
+import tools.jackson.module.kotlin.jacksonMapperBuilder
+import tools.jackson.module.kotlin.readValue
 import java.util.*
 
 object UserContext {
@@ -17,7 +18,7 @@ object UserContext {
         }
     }
 
-    private val jsonMapper : JsonMapper = JsonMapper()
+    private val jsonMapper : JsonMapper = jacksonMapperBuilder().build()
 
     private val CONTEXT: ThreadLocal<UserContextRecord> =
         ThreadLocal.withInitial { UserContextRecord("0", "0", "anonymous") }
